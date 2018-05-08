@@ -2,8 +2,8 @@ create table user (
 	userID int auto_increment,
     firstName varchar(15),
     lastName varchar(25),
-    userName varchar(25),
-    email varchar(50),
+    userName varchar(25) unique,
+    email varchar(50) unique,
     paswd varchar(50),
     dateRegister date,
     isVerified boolean,
@@ -39,11 +39,11 @@ create table product (
     productDescript varchar(200),
     designID int,
     categoryID int,
-    primary key (productID, designID, categoryID),
+    primary key (productID),
     foreign key (designID) references design (designID),
     foreign key (categoryID) references category (categoryID)
 );
-
+    
 create table product_option (
 	optionID int,
 	productID int,
@@ -87,9 +87,10 @@ create table variant_value (
 # https://stackoverflow.com/questions/24923469/modeling-product-variants
 create table sttOrder (
 	sttID int auto_increment,
-    sttName varchar(10), #draft, onCart, onShipping, done, isCanceled
+    sttName varchar(10), #draft, onCart, onPrinting, onShipping, done, isCanceled
     primary key (sttID)
 );
+
 
 create table payment (
 	paymentID int auto_increment,
@@ -113,10 +114,21 @@ create table saleOrder (
     orderDate date,
     shipDate date,
     sttOrder int,
-    total float,
     primary key (saleOrderID)
 );
 
+alter table saleOrder
+	add foreign key (sttOrder) references sttOrder(sttID)
+    
+alter table saleOrder
+	add foreign key (shipperID) references shipper(shipperID)
+    
+alter table saleOrder
+    add foreign key (paymentID) references payment(paymentID
+    
+alter table saleOrder
+    add foreign key (customerID) references user (userID)
+    
 create table saleOrderLine (
 	lineID int auto_increment,
     saleOrderID int,
