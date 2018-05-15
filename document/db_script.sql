@@ -29,6 +29,9 @@ create table user (
     foreign key (addressID) references address (addressID)
 );
 
+insert into user values ('Minh', 'Doan Nam', 'minhdn', 'namminhlp@gmail.com','2018-05-15', '3071997', 'Vietnam',1, NULL);
+ALTER TABLE user AUTO_INCREMENT = 1;
+
 create table category (
 	categoryID int auto_increment,
     categoryName varchar(50),
@@ -36,28 +39,33 @@ create table category (
     primary key (categoryID)
 );
 
+insert into category values ('T-shirt', 60000);
+insert into category values ('Hoodie', 120000);
+insert into category values ('Polo-shirt', 700000);
+
 create table design (
 	designID int auto_increment,
     designOwner int,
-    linkPicture varchar(20),
-    designName varchar(50),
+	designName varchar(50),
     designDescript varchar(150),
+	linkPicture varchar(50),
     primary key (designID),
     foreign key (designOwner) references user (userID)
 );
 
-#Xem xét về pricelist
+insert into design values (1,1,'CUTE FRENCH BULLDOG', 'Cute French Bulldog Bulldogs Heroes Dog Lover T Shirt', 'https://www.sunfrog.com/145760209-1190752663.html')
 
 create table product (
 	productID int auto_increment,
-    productName varchar(50),
-    productDescript varchar(150),
     designID int,
     categoryID int,
     primary key (productID),
     foreign key (designID) references design (designID),
     foreign key (categoryID) references category (categoryID)
 );
+
+insert into product (designID, categoryID) values (1,1);
+insert into product (designID, categoryID) values (1,2);
 
 create table size (
 	sizeID int auto_increment,
@@ -66,12 +74,28 @@ create table size (
     primary key (sizeID)
 );
 
+alter table size AUTO_INCREMENT = 1;
+insert into size (sizeName, sizeCode) values ('small' ,'S');
+insert into size (sizeName, sizeCode) values ('medium', 'M');
+insert into size (sizeName, sizeCode) values ('large', 'L');
+insert into size (sizeName, sizeCode) values ('extra large', 'XL');
+
 create table color (
 	colorID int auto_increment,
     colorName varchar(15),
     colorCode varchar(7),
     primary key (colorID)
 );
+
+alter table color AUTO_INCREMENT = 1;
+insert into color (colorName, colorCode) values ('red','#FF0000');
+insert into color (colorName, colorCode) values ('blue','#0000FF');
+insert into color (colorName, colorCode) values ('yellow','FFFF00');
+insert into color (colorName, colorCode) values ('green','#008000');
+insert into color (colorName, colorCode) values ('black', '#000000');
+insert into color (colorName, colorCode) values ('white', 'FFFFFF');
+insert into color (colorName, colorCode) values ('gray','#808080');
+
 
 create table product_variant (
 	variantID int auto_increment,
@@ -88,12 +112,20 @@ create table product_variant (
 	primary key (variantID)
 );
 
+
 create table pricelist (
 	priceID int auto_increment,
-    priceName varchar(15),
+    productID int,
     price float,
+    startdate date,
+    enddate date,
+    foreign key (productID) references product (productID),
     primary key (priceID)
 );
+
+alter table pricelist AUTO_INCREMENT = 1;
+insert into  price (productID,price,startdate,enddate,isActive) values (1,150000,current_date(), null)
+,(2,220000,current_date(), null);
 
 create table product_price (
 	whoChange int,
@@ -104,14 +136,24 @@ create table product_price (
     foreign key (productID) references product (productID),
     foreign key (whoChange) references user (userID),
     foreign key (priceID) references pricelist (priceID),
-    primary key (userID, productID, priceID)
+    primary key (whoChange, productID, priceID)
 );
+
 
 create table sttOrder (
 	sttID int auto_increment,
     sttName varchar(10), #onCart, onDraft, onPrinting, onShipping, paid, canceled
     primary key (sttID)
 );
+
+alter table sttOrder AUTO_INCREMENT = 1;
+insert into sttOrder (sttName) values ('onCart');
+insert into sttOrder (sttName) values ('onDraft');
+insert into sttOrder (sttName) values ('onPrinting');
+insert into sttOrder (sttName) values ('onShipping');
+insert into sttOrder (sttName) values ('paid');
+insert into sttOrder (sttName) values ('canceled');
+
 
 create table payment (
 	paymentID int auto_increment,
@@ -144,16 +186,15 @@ create table saleOrder (
 	foreign key (customerID) references user (userID),
     primary key (saleOrderID)
 );
-    
+
+#Lưu ý nên sửa saleOrderline là khóa chính, kết hợp với 1 saleorder thay vì thiết kế như thế này.
 create table saleOrderLine (
-	lineID int auto_increment,
     saleOrderID int,
     variantID int,
-    unitPrice float,
     quatity int,
 	foreign key (variantID) references product_variant(variantID),
     foreign key (saleOrderID) references saleOrder (saleOrderID),
-        primary key (lineID)
+	primary key (saleOrderID, variantID)
 );
 
 create table staff (
