@@ -37,12 +37,12 @@
 .InSearch {
 	border-radius: 10px;
 }
-.icColor {
+#icColor {
 	color:white;
 }
 .input-round-submit
 {
-	    position: absolute;
+	position: absolute;
     top: 0;
     right: 0;
     height: 42px;

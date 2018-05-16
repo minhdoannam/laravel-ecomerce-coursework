@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>4 Man - Shirt</title>
+    <title>4 Man</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/custom.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
@@ -17,7 +17,6 @@
     a {
         color: black;
     }
-
     a:hover {
         color: #544949;
     }
@@ -28,37 +27,46 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">4 Man - Shirt</a>
+            <a class="navbar-brand" href="index.html">4Man</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!--Search bar --->
+
+                    <form class="input-with-submit header-search" method="GET">
+                        <div class="input-group" id="search-container">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="keyword">
+                            <span class="input-group-button">
+                <button class="btn btn-default" style="background-color: orange" type="submit">
+                  <i class="fa fa-search" id="icColor"></i>
+                </button>
+              </span>
+                        </div>
+                    </form>
+                <!-- Search bar END -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <div id="imaginary_container">
-                            <div class="input-group stylish-input-group">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-addon">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>  
-                    </span>
-                            </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sản phẩm
+              </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                            <a class="dropdown-item" href="portfolio-1-col.html">T-shirt</a>
+                            <a class="dropdown-item" href="portfolio-2-col.html">Polo shirt</a>
+                            <a class="dropdown-item" href="portfolio-3-col.html">Hoodie</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Áo thun không cổ</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Áo thun có cổ</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Áo hoodie</a>
+                        <a class="nav-link" href="services.html">Login</a>
                     </li>
-                    <li>
-                        <span class="navRbcart">
-              <i class=" fa fa-shopping-cart shopping_bg" aria-hidden="true"></i>
-            </span>
+                    <li class="nav-item">
+                        <li class="nav-link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></li>
                     </li>
                 </ul>
             </div>
@@ -106,7 +114,7 @@
     </header>
     <!-- Page Content -->
     <div class="container">
-        <h1 class="my-4">Recommendations For You</h1>
+        <h1 class="my-4">Sản phẩm mới nhất</h1>
         <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-3">
@@ -141,56 +149,6 @@
                     <a href="">
                         <div style="height: 255px">
                             <img src="/img/ts4.jpg" class="imgProduct">
-                        </div>
-                        <div>
-                            <strong>Renewable Energy tshirt</strong>
-                            <p>by Weenietees</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <!-- Portfolio Section -->
-        <div class="row spaceProduct">
-            <div class="col-lg-3 dvTitlepd">
-                <h3>Áo thun có cổ</h3>
-            </div>
-            <div class="col-md-9 dvTitlehr"></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-        <img src="/img/ts1.jpg" class="imgProduct">
-        <strong>Renewable Energy tshirt</strong>
-        <p>by Weenietees</p>
-      </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-        <img src="/img/ts5.jpg" class="imgProduct">
-        <strong>Renewable Energy tshirt</strong>
-        <p>by Weenietees</p>
-      </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-      <img src="/img/ts3.jpg" class="imgProduct">
-      <strong>Renewable Energy tshirt</strong>
-      <p>by Weenietees</p>
-    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-                        <div style="height: 255px">
-                            <img src="storage/img/ts4.jpg" class="imgProduct">
                         </div>
                         <div>
                             <strong>Renewable Energy tshirt</strong>
@@ -314,7 +272,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
             </div>
             <div class="col-lg-6">
-                <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+                <img class="img-fluid rounded" src="storage/img/promotion_background.jpg" alt="">
             </div>
         </div>
         <!-- /.row -->
@@ -325,7 +283,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
             </div>
             <div class="col-md-4">
-                <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
+                <a class="btn btn-lg btn-secondary btn-block" href="#">Hãy lựa chọn sản phẩm của bạn ngay</a>
             </div>
         </div>
     </div>
@@ -333,7 +291,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
         </div>
         <!-- /.container -->
     </footer>
