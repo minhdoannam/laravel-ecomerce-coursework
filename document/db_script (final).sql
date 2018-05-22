@@ -22,7 +22,7 @@ create table address (
     primary key (addressID),
     foreign key (cityID) references city (cityID)
 );
-create table userID (
+create table user (
 	userID int auto_increment,
     firstName varchar(15),
     lastName varchar(25),
@@ -47,33 +47,38 @@ create table category (
     primary key (categoryID)
 );
 
-insert into category values ('T-shirt', 60000);
-insert into category values ('Hoodie', 120000);
-insert into category values ('Polo-shirt', 700000);
+insert into category(categoryName, baseCost) values ('T-shirt', 60000),
+('Hoodie', 120000),('Polo-shirt', 700000);
 
-create table design (
-	designID int auto_increment,
-    designOwner int,
-	designName varchar(50),
-    designDescript varchar(150),
-	linkPicture varchar(50),
-    primary key (designID),
-    foreign key (designOwner) references user (userID)
+create table pricelist (
+	priceID int auto_increment,
+    price float,
+    startdate date,
+    enddate date,
+    primary key (priceID)
 );
 
-insert into design values (1,1,'CUTE FRENCH BULLDOG', 'Cute French Bulldog Bulldogs Heroes Dog Lover T Shirt', 'https://www.sunfrog.com/145760209-1190752663.html')
+# sp: Khi thay đổi giá, phải xóa giá trước đó, kết thúc rồi mời thêm giá tiếp theo.
+alter table pricelist AUTO_INCREMENT = 1;
+insert into pricelist (price,startdate,enddate) values (150000,current_date(), null)
+,(220000,current_date(), null);
+
 
 create table product (
 	productID int auto_increment,
-    designID int,
+    productName varchar(50),
+    productDescript text,
     categoryID int,
+    price int,
     primary key (productID),
-    foreign key (designID) references design (designID),
-    foreign key (categoryID) references category (categoryID)
+    foreign key (categoryID) references category (categoryID),
+    foreign key (price) references pricelist (priceID)
 );
 
-insert into product (designID, categoryID) values (1,1);
-insert into product (designID, categoryID) values (1,2);
+insert into product (productName, productDescript, categoryID, price) value 
+('CUTE FRENCH BULLDOG T-shirt', 'Cute French Bulldog Bulldogs Heroes Dog Lover T Shirt',1, 1),
+('CUTE FRENCH BULLDOG Hoodie', 'Cute French Bulldog Bulldogs Heroes Dog Lover Hoodie',2, 2);
+
 
 create table size (
 	sizeID int auto_increment,
@@ -137,35 +142,6 @@ insert into product_variant(productID,SKU,linkPicture,stt, sizeID, colorID) valu
 (2, '2_hoodie_gray_M', '/storage/product/2_hoodie_7','isAvailable',2,7),
 (2, '2_hoodie_gray_L', '/storage/product/2_hoodie_7','isAvailable',3,7);
 
-create table pricelist (
-	priceID int auto_increment,
-    productID int,
-    price float,
-    startdate date,
-    enddate date,
-    foreign key (productID) references product (productID),
-    primary key (priceID)
-);
-
-# sp: Khi thay đổi giá, phải xóa giá trước đó, kết thúc rồi mời thêm giá tiếp theo.
-alter table pricelist AUTO_INCREMENT = 1;
-insert into pricelist (productID,price,startdate,enddate,isActive) values (1,150000,current_date(), null)
-,(2,220000,current_date(), null);
-
-insert into pricelist (productID,price,startdate,enddate,isActive) values (2,2200000,current_date(), null)
-,(2,220000,current_date(), null);
-
-create table product_price (
-	whoChange int,
-    productID int,
-    priceID int,
-    startDate date,
-    endDate date,
-    foreign key (productID) references product (productID),
-    foreign key (whoChange) references user (userID),
-    foreign key (priceID) references pricelist (priceID),
-    primary key (whoChange, productID, priceID)
-);
 
 create table sttOrder (
 	sttID int auto_increment,

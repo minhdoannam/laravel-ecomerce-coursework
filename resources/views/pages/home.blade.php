@@ -49,7 +49,9 @@
     </header>
     <!-- Page Content -->
     <div class="container">
-        
+        @foreach ($categories as $cate)
+            <h1>{{$cate->categoryName}}</h1>
+        @endforeach
         <h1 class="my-4">Sản phẩm mới nhất</h1>
         <!-- Marketing Icons Section -->
         <div class="row">
