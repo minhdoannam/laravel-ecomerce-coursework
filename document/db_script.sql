@@ -174,9 +174,8 @@ create table sttOrder (
 );
 
 alter table sttOrder AUTO_INCREMENT = 1;
-insert into sttOrder (sttName) values ('onCart');
+
 insert into sttOrder (sttName) values ('onDraft');
-insert into sttOrder (sttName) values ('onPrinting');
 insert into sttOrder (sttName) values ('onShipping');
 insert into sttOrder (sttName) values ('paid');
 insert into sttOrder (sttName) values ('canceled');

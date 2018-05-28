@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   @include('includes.head')
+    @include('includes.head')
 </head>
 
 <body>
@@ -49,189 +50,163 @@
     </header>
     <!-- Page Content -->
     <div class="container">
-        @foreach ($categories as $cate)
-            <h1>{{$cate->categoryName}}</h1>
-        @endforeach
         <h1 class="my-4">Sản phẩm mới nhất</h1>
         <!-- Marketing Icons Section -->
         <div class="row">
+
+            @foreach ($sanpham as $sp)
             <div class="col-lg-3">
                 <div class="dvproduct">
                     <a href="">
-            <img src="/img/ts1.jpg" class="imgProduct">
-            <strong>Renewable Energy tshirt</strong>
-            <p>by Weenietees</p>
-          </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-            <img src="/img/ts5.jpg" class="imgProduct">
-            <strong>Renewable Energy tshirt</strong>
-            <p>by Weenietees</p>
-          </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-          <img src="/img/ts3.jpg" class="imgProduct">
-          <strong>Renewable Energy tshirt</strong>
-          <p>by Weenietees</p>
-        </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-                        <div style="height: 255px">
-                            <img src="/img/ts4.jpg" class="imgProduct">
-                        </div>
-                        <div>
-                            <strong>Renewable Energy tshirt</strong>
-                            <p>by Weenietees</p>
-                        </div>
+                        <img src="{{$sp->defaultImage}}" class="imgProduct">
+                        <strong>{{ $sp->productName }}</strong>
+                        <p>by Weenietees</p>
                     </a>
                 </div>
             </div>
-        </div>
-        <!-- /.row -->
-        <div class="row spaceProduct">
-            <div class="col-lg-3 dvTitlepd">
-                <h3>Áo hoodie</h3>
+            @endforeach
+
+        </div> 
+
+            <!-- /.row -->
+            @foreach ($theloai as $tl)
+            <div class="row spaceProduct">
+                <div class="col-lg-3 dvTitlepd">
+                    <h3>{{$tl->categoryName}}</h3>
+                </div>
+                <div class="col-md-9 dvTitlehr"></div>
             </div>
-            <div class="col-md-9 dvTitlehr"></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
+            @endforeach
+            <!-- Dòng có 4 sản phẩm -->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
         <img src="img/ts1.jpg" class="imgProduct">
         <strong>Renewable Energy tshirt</strong>
         <p>by Weenietees</p>
       </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
         <img src="img/ts5.jpg" class="imgProduct">
         <strong>Renewable Energy tshirt</strong>
         <p>by Weenietees</p>
       </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
       <img src="img/ts3.jpg" class="imgProduct">
       <strong>Renewable Energy tshirt</strong>
       <p>by Weenietees</p>
     </a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
+                            <div style="height: 255px">
+                                <img src="img/ts4.jpg" class="imgProduct">
+                            </div>
+                            <div>
+                                <strong>Renewable Energy tshirt</strong>
+                                <p>by Weenietees</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-                        <div style="height: 255px">
-                            <img src="img/ts4.jpg" class="imgProduct">
-                        </div>
-                        <div>
-                            <strong>Renewable Energy tshirt</strong>
-                            <p>by Weenietees</p>
-                        </div>
-                    </a>
+            <div class="row spaceProduct">
+                <div class="col-lg-3 dvTitlepd">
+                    <h3>Áo thun không cổ</h3>
                 </div>
+                <div class="col-md-9 dvTitlehr"></div>
             </div>
-        </div>
-        <div class="row spaceProduct">
-            <div class="col-lg-3 dvTitlepd">
-                <h3>Áo thun không cổ</h3>
-            </div>
-            <div class="col-md-9 dvTitlehr"></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
         <img src="img/ts1.jpg" class="imgProduct">
         <strong>Renewable Energy tshirt</strong>
         <p>by Weenietees</p>
       </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
         <img src="img/ts5.jpg" class="imgProduct">
         <strong>Renewable Energy tshirt</strong>
         <p>by Weenietees</p>
       </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
       <img src="img/ts3.jpg" class="imgProduct">
       <strong>Renewable Energy tshirt</strong>
       <p>by Weenietees</p>
     </a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="dvproduct">
+                        <a href="">
+                            <div style="height: 255px">
+                                <img src="img/ts4.jpg" class="imgProduct">
+                            </div>
+                            <div>
+                                <strong>Renewable Energy tshirt</strong>
+                                <p>by Weenietees</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="dvproduct">
-                    <a href="">
-                        <div style="height: 255px">
-                            <img src="img/ts4.jpg" class="imgProduct">
-                        </div>
-                        <div>
-                            <strong>Renewable Energy tshirt</strong>
-                            <p>by Weenietees</p>
-                        </div>
-                    </a>
+            <!-- Features Section -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Modern Business Features</h2>
+                    <p>The Modern Business template by Start Bootstrap includes:</p>
+                    <ul>
+                        <li>
+                            <strong>Bootstrap v4</strong>
+                        </li>
+                        <li>jQuery</li>
+                        <li>Font Awesome</li>
+                        <li>Working contact form with validation</li>
+                        <li>Unstyled page elements for easy customization</li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img class="img-fluid rounded" src="storage/img/promotion_background.jpg" alt="">
+                </div>
+            </div>
+            <!-- /.row -->
+            <hr>
+            <!-- Call to Action Section -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-secondary btn-block" href="#">Hãy lựa chọn sản phẩm của bạn ngay</a>
                 </div>
             </div>
         </div>
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Modern Business Features</h2>
-                <p>The Modern Business template by Start Bootstrap includes:</p>
-                <ul>
-                    <li>
-                        <strong>Bootstrap v4</strong>
-                    </li>
-                    <li>jQuery</li>
-                    <li>Font Awesome</li>
-                    <li>Working contact form with validation</li>
-                    <li>Unstyled page elements for easy customization</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-            </div>
-            <div class="col-lg-6">
-                <img class="img-fluid rounded" src="storage/img/promotion_background.jpg" alt="">
-            </div>
-        </div>
-        <!-- /.row -->
-        <hr>
-        <!-- Call to Action Section -->
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-            </div>
-            <div class="col-md-4">
-                <a class="btn btn-lg btn-secondary btn-block" href="#">Hãy lựa chọn sản phẩm của bạn ngay</a>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-    <!-- Footer -->
-    @include('includes.footer')
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- /.container -->
+        <!-- Footer -->
+        @include('includes.footer')
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/popper/popper.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
