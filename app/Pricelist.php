@@ -9,5 +9,4 @@ class Pricelist extends Model
     //
     protected $table = 'pricelist';
 	public $timestamp = false;
-
 }
