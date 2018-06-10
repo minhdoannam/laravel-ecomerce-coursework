@@ -25,9 +25,6 @@ class HomeController extends Controller
 				->get();
 		return $result;
 	}
-	public function showProductDetail() {
-		
-	}
 	public function index() {
 		return view('pages/home');
 	}

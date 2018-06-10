@@ -9,9 +9,6 @@ class Category extends Model
 {
     //
     protected $table = 'categories';
-    public $timestamp = false;
-
-    public function product() {
-    	return $this->hasMany('App\Product');
-    }
+    public $timestamp = true;
+    protected $fillable = ['id', 'categoryName'];
 }

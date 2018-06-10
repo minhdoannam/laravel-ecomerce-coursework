@@ -8,5 +8,6 @@ class Options extends Model
 {
     //
     protected $table = 'options';
-    public $timestamp = false;
+    public $timestamp = true;
+    protected $fillable = ['id', 'attrName'];
 }
