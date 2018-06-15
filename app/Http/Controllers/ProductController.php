@@ -22,4 +22,15 @@ class ProductController extends Controller
 		return $result;
 	}
 	
+	public function getDefaultProductDetail ($productID) {
+		$product = Product::find($productID);
+    	$defaultImage = $product->defaultImage;
+    	$defaultSkuCode = (DB::table('images')->where('url', $defaultImage)->get())->skuCode;
+		$result = DB::table('products')
+				->join('skus', 'products.id', '=', 'skus.productID')
+				->select('products.id', 'productName', 'productDescript', 'skuCode', 'inStock')
+				->where('skuCode','=',$defaultSkuCode)
+				->first();
+		return $result;
+	}
 }

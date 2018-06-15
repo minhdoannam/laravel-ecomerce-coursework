@@ -12,6 +12,12 @@ class Product extends Model
     public $timestamp = false;
 	
 	public function category() {
-		return $this->belongTo('App\Category');
+		return $this->belongsTo('App\Category', 'categoryID', 'id');
+	}
+	public function pricelist(){
+		return $this->hasMany('App\Pricelist','productID','id');
+	}
+	public function sku(){
+		return $this->hasMany('App\Skus', 'productID', 'id');
 	}
 }

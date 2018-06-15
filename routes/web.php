@@ -21,3 +21,5 @@ Route::get('/', ['uses' => 'categoryController@getAllCategories']);
 */
 
 Route::get('/','homeController@index');
+
+Route::get('detail/{category}/{id}', 'homeController@productDefaultDetail');

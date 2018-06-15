@@ -3,8 +3,18 @@
 
 <head>
     @include('includes.head')
+
 </head>
 
+<style>
+a {
+    color: black;
+}
+
+a:hover {
+    color: #544949;
+}
+</style>
 <body>
     <!-- Navigation -->
     @include('includes.nav')
@@ -59,11 +69,12 @@
             ?>
             <div class="col-lg-3">
                 <div class="dvproduct">
-                    <a href="">
-                        <img src="{{$sp->defaultImage}}" class="imgProduct">
-                        <strong>{{ $sp->productName }}</strong>
-                        <p>{{\App\Http\Controllers\PricelistController::getPriceByProductID($sp->id)}} VND</p>
+                    <a href="{{ url('detail', [$sp->categoryID, $sp->id]) }}">
+                        <img src="{{ $sp->defaultImage }}" class="imgProduct">
+                       
                     </a>
+                     <strong>{{ $sp->productName }}</strong>
+                    <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($sp->id),0,",","."  )}} VND</p>
                 </div>
             </div>
             @endforeach
@@ -71,8 +82,8 @@
         <!-- /.row -->
         @foreach ($theloai as $tl)
         <div class="row spaceProduct">
-            <div class="col-lg-3 dvTitlepd">
-                <h3>{{$tl->categoryName}}</h3>
+            <div class="my-4">
+                <h2>{{$tl->categoryName}}</h2>
             </div>
             <div class="col-md-9 dvTitlehr"></div>
             <div class="row">
@@ -82,11 +93,12 @@
                     @foreach ($sanphamList as $spl)
                     <div class="col-lg-3">
                         <div class="dvproduct">
-                            <a href="">
+                            <a href="{{ url('detail', [$sp->categoryID, $sp->id]) }}">
                                 <img src="{{$spl->defaultImage}}" class="imgProduct">
-                                <strong>{{$spl->productName}}</strong>
-                                <p> {{\App\Http\Controllers\PricelistController::getPriceByProductID($spl->id)}} VND</p>
+                                
                             </a>
+                            <strong>{{$spl->productName}}</strong>
+                                <p class="price-tag"> {{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($spl->id),0,",","." )}} VND</p>
                         </div>
                     </div>
                     @endforeach
@@ -145,6 +157,7 @@
         </div>
         -->
         <!-- Features Section -->
+        <div class="col-md-9 dvTitlehr"></div>
         <div class="row">
             <div class="col-lg-6">
                 <h2>Chờ đếch gì nữa, đặt hàng nhanh và luôn</h2>
