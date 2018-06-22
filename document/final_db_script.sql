@@ -1,6 +1,6 @@
 create table if not exists `options` (
 	id int(11) not null auto_increment,
-    attrName varchar(50) DEFAULT NULL,
+    optionName varchar(50) DEFAULT NULL,
     primary key (id)
 );
 
@@ -18,11 +18,7 @@ create table if not exists `categories` (
     primary key (id)
 );
 
-CREATE TABLE IF NOT EXISTS `images` (
-	id int(11) not null auto_increment,
-    url varchar(50),
-    primary key (id)
-);
+
 
 CREATE TABLE IF NOT EXISTS `products` (
 	id int(11) not null auto_increment,
@@ -54,29 +50,30 @@ CREATE TABLE IF NOT exists `skus` (
     productID int(11),
     skuCode varchar(15),
     inStock int default 0,
-	imageID int(11),
     active boolean default 1,
-    haveVariant boolean default 1,
-    primary key (skuCode,productID)
+    primary key (skuCode)
 )AUTO_INCREMENT = 1;
 
-
+    
+CREATE TABLE IF NOT EXISTS `images` (
+	id int(11) not null auto_increment,
+    url varchar(50),
+    skuCode varchar(15),
+    foreign key (skuCode) references `skus` (skuCode),
+    primary key (id)
+);
 
 alter table `skus`
 	add constraint fk_product_skus foreign key (productID) references products (id);
-    
-alter table `skus`
-	add constraint fk_image_skus foreign key (imageID) references images (id);
-    
+
 CREATE TABLE IF NOT EXISTS `variants` (
     skuCode varchar(15),
 	optionID int (11),
-    productID int(11),
 	valueID int(11),
     foreign key (valueID) references `option_values` (id),
-    foreign key (skuCode, productID) references `skus` (skuCode, productID),
+    foreign key (skuCode) references `skus` (skuCode),
     foreign key (optionID) references `options` (id),
-    primary key(skuCode, productID, optionID)
+    primary key(skuCode, optionID)
 );
 
 
@@ -101,7 +98,7 @@ insert into city (cityName) values ('Hồ Chí Minh'),
  ('Bình Định'), 
  ('Quảng Nam');
  
-create table if not exists `user` (
+create table if not exists `customers` (
 	id int(11) auto_increment,
     firstName varchar(15),
     lastName varchar(20),
@@ -175,10 +172,7 @@ create table if not exists `order_line` (
     primary key (id)
 );
 
-INSERT INTO `images` VALUES
-(1,'storage/product/1_black.jpg'),
-(2,'storage/product/2_black.jpg'),
-(3, 'storage/product/2_gray.jpg');
+
 
 INSERT INTO `options` VALUES
 (1,'color'),
@@ -204,39 +198,48 @@ insert into products (productName, productDescript, categoryID, defaultImage) va
 ('Cute Bulldog T-shirt', 'Cute French Bulldog Bulldogs Heroes Dog Lover T Shirt',1,'storage/product/1_black.jpg'),
 ('Cute Bulldog Hoodie', 'Cute French Bulldog Bulldogs Heroes Dog Lover Hoodie',2, 'storage/product/2_black.jpg');
 
-insert into `skus` (productID, skuCode, inStock, imageID) values
-(1, 'TS1_1001',10, 1),
-(1, 'TS1_1002',10, 1),
-(1, 'TS1_1003',10, 1),
-(2, 'HD2_1001',10, 2),
-(2, 'HD2_1002',10, 2),
-(2, 'HD2_1003',10, 2),
-(2, 'HD2_1004',10, 3),
-(2, 'HD2_1005',10, 3),
-(2, 'HD2_1006',10, 3);
+insert into `skus` (productID,skuCode, inStock) values
+(1, 'TS1_1001',10),
+(1, 'TS1_1002',10),
+(1, 'TS1_1003',10),
+(2, 'HD2_1001',10),
+(2, 'HD2_1002',10),
+(2, 'HD2_1003',10),
+(2, 'HD2_1004',10),
+(2, 'HD2_1005',10),
+(2, 'HD2_1006',10);
 
 insert into `pricelist` (productID, price,startdate,enddate) values 
 (1,150000,current_date(), null)
 ,(2,220000,current_date(), null);
 
-insert into `variants` ( productID, skuCode, optionID,valueID) values 
-(1,'TS1_1001',1,4),
-(1,'TS1_1001',2,6), #Đen, S
-(1,'TS1_1002',1,4),
-(1,'TS1_1002',2,7), #Đen, M
-(1,'TS1_1003',1,4),
-(1,'TS1_1003',2,8), #Đen XL
-(2, 'HD2_1001',1, 4), 
-(2, 'HD2_1001',2, 6), #Đen S
-(2, 'HD2_1002',1, 4), 
-(2, 'HD2_1002',2, 7), #Đen, M
-(2, 'HD2_1003',1, 4),
-(2, 'HD2_1003',2, 8), #Đen XL
-(2, 'HD2_1004',1, 5),
-(2, 'HD2_1004',2, 6), #Xám S
-(2, 'HD2_1005',1, 5),
-(2, 'HD2_1005',2, 6), #Xám M
-(2, 'HD2_1006',1, 5),
-(2, 'HD2_1006',2, 6); #Xám L
+insert into `variants` (skuCode, optionID,valueID) values 
+('TS1_1001',1,4),
+('TS1_1001',2,6), #Đen, S
+('TS1_1002',1,4),
+('TS1_1002',2,7), #Đen, M
+('TS1_1003',1,4),
+('TS1_1003',2,8), #Đen XL
+('HD2_1001',1, 4), 
+('HD2_1001',2, 6), #Đen S
+('HD2_1002',1, 4), 
+('HD2_1002',2, 7), #Đen, M
+('HD2_1003',1, 4),
+( 'HD2_1003',2, 8), #Đen XL
+('HD2_1004',1, 5),
+('HD2_1004',2, 6), #Xám S
+('HD2_1005',1, 5),
+('HD2_1005',2, 6), #Xám M
+('HD2_1006',1, 5),
+('HD2_1006',2, 6); #Xám L
 
-
+INSERT INTO `images` VALUES
+(1,'storage/product/1_black.jpg', 'TS1_1001'),
+(2,'storage/product/1_black.jpg', 'TS1_1002'),
+(3,'storage/product/1_black.jpg', 'TS1_1003'),
+(4,'storage/product/2_black.jpg', 'HD2_1001'),
+(5,'storage/product/2_black.jpg', 'HD2_1002'),
+(6,'storage/product/2_black.jpg', 'HD2_1003'),
+(7, 'storage/product/2_gray.jpg', 'HD2_1004'),
+(8, 'storage/product/2_gray.jpg', 'HD2_1005'),
+(9, 'storage/product/2_gray.jpg', 'HD2_1006');

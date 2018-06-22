@@ -15,11 +15,10 @@ class ProductController extends Controller
 		return $result;
 	}
 	
-	public static function getProdcutByCategory($categoryID) {
+	public static function getProductByCategory($categoryID) {
 		$result = DB::table('product')
 				->where('categoryID', $categoryID)
 				->get();
 		return $result;
 	}
-	
 }
