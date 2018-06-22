@@ -3,7 +3,7 @@
 
 <head>
     @include('includes.head')
-
+    <title>MDN Boutique</title>
 </head>
 
 <style>
@@ -69,7 +69,7 @@ a:hover {
             ?>
             <div class="col-lg-3">
                 <div class="dvproduct">
-                    <a href="{{ url('detail', [$sp->categoryID, $sp->id]) }}">
+                    <a href="{{ url('detail', [$sp->id]) }}">
                         <img src="{{ $sp->defaultImage }}" class="imgProduct">
                        
                     </a>
@@ -93,7 +93,7 @@ a:hover {
                     @foreach ($sanphamList as $spl)
                     <div class="col-lg-3">
                         <div class="dvproduct">
-                            <a href="{{ url('detail', [$sp->categoryID, $sp->id]) }}">
+                            <a href="{{ url('detail', [$sp->id])}}">
                                 <img src="{{$spl->defaultImage}}" class="imgProduct">
                                 
                             </a>

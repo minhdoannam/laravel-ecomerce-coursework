@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class VariantController extends Controller
 {
     //
-    public  static function getVariantOption($skuCode) {
+    public static function getVariantOption($skuCode) {
     	$result = DB::table("variants")
     			->where('skuCode', $skuCode)
     			->select('optionID')
@@ -27,5 +27,50 @@ class VariantController extends Controller
                 ->select('variants.valueID')
                 ->get();
         return $result;
+    }
+
+    public function getValuesBySku(Request $request) {
+        $skuCode = $_GET['skuCode'];
+        $result = DB::table("variants")
+                ->distinct()
+                ->where('skuCode', $skuCode)
+                ->select('variants.valueID')
+                ->get();
+        $return_array = compact('result');
+        return json_encode($return_array);
+    }
+
+    public function getSkuByValues(Request $request) {
+        $values = $_GET['values'];
+        if($request->ajax())
+        {
+            $stringCondition = "(";
+            for ($i = 0; $i < sizeof($values); $i++) {
+                $temp = "";
+                if ($i != 0) 
+                {
+                     $temp = " or (optionID = ".$values[$i][0]." and "."valueID = ".$values[$i][1].")";
+                } 
+                 else 
+                {
+                    $temp = "(optionID = ".$values[$i][0]." and "."valueID = ".$values[$i][1].")";
+                }
+                $stringCondition = $stringCondition.$temp;
+            }
+            $stringCondition = $stringCondition. ")";
+
+
+             $result = DB::table('variants')
+                    ->join('skus', 'skus.skuCode', '=','variants.skuCode')
+                    ->where('skus.productID', $_GET['productID'])
+                    ->whereRaw($stringCondition)
+                    ->select('variants.skuCode', DB::raw('count(*) as indexSku'))
+                    ->groupBy('variants.skuCode')
+                    ->orderBy('indexSku', 'desc')
+                    ->get()->first();
+
+            $return_array = compact('result');
+            return json_encode($return_array);
+        }
     }
 }

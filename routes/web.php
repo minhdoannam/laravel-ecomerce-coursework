@@ -22,4 +22,8 @@ Route::get('/', ['uses' => 'categoryController@getAllCategories']);
 
 Route::get('/','homeController@index');
 
-Route::get('detail/{category}/{id}', 'homeController@productDefaultDetail');
+Route::get('detail/{id}', 'homeController@productDefaultDetail');
+
+Route::get('/getVariants', ['uses' => 'VariantController@getValuesBySku']);
+Route::get('/getSkuCode' , ['uses' => 'VariantController@getSkuByValues']);
+Route::get('/getSkuCode/changeImage' , ['uses' => 'ImageController@changeImage']);

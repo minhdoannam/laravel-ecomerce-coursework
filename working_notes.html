@@ -1,7 +1,2 @@
-15/06:
-- Việc tiếp theo cần làm:
-    + Thực hiện chọn default sku như thế nào?
-    + Chạy ajax khi chuyển đổi các sku.
-
-Nhìn xem, khi trang đã load xong, ta có mã SKU mặc dịnh, từ đó truy vấn ra được các optionID và valueID đi kèm, thì ta select nó :3 
-
+ --- Làm thế nào để truy vấn ngược lại SKU từ option và value? SELECT v.skuCode, COUNT(v.skuCode) from skus s join variants v on v.skuCode = s.skuCode 
+ where s.productID =1 and ((optionID = 1 and valueID = 4) or (optionID = 2 and valueID = 6)) group by v.skuCode

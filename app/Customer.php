@@ -8,5 +8,7 @@ class Customer extends Model
 {
     //
     protected $table = 'customers';
-	public $timestamp = false;
+	public $timestamp = true;
+
+	
 }

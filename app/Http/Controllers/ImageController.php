@@ -12,4 +12,13 @@ class ImageController extends Controller
     	$result = DB::table('images')->where('skuCode',$skuCode)->first()->url;
     	return $result;
     }
+
+    public function changeImage (Request $request) {
+    	$skuCode = $_GET['skuCode'];
+    	if ($request->ajax()) {
+    		$result = DB::table('images')->where('skuCode',$skuCode)->first();
+    	}
+    	 $return_array = compact('result');
+        return json_encode($return_array);
+    }
 }
