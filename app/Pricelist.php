@@ -8,5 +8,8 @@ class Pricelist extends Model
 {
     //
     protected $table = 'pricelist';
-	public $timestamp = false;
+	public $timestamp = true;
+
+	protected $fillable = ['id', 'productID','price','startdate', 'enddate' ];
+	
 }

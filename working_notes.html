@@ -1,2 +1,0 @@
- --- Làm thế nào để truy vấn ngược lại SKU từ option và value? SELECT v.skuCode, COUNT(v.skuCode) from skus s join variants v on v.skuCode = s.skuCode 
- where s.productID =1 and ((optionID = 1 and valueID = 4) or (optionID = 2 and valueID = 6)) group by v.skuCode
