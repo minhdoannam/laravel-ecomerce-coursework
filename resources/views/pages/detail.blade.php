@@ -58,14 +58,14 @@
                             <div class="item-gallery"> <img src=""> </div>
                             <div class="item-gallery"> <img src=""> </div>
                         </div>
-                         -->
+                     -->
                         <!-- slider-nav.// -->
                     </article>
                     <!-- gallery-wrap .end// -->
                 </aside>
                 <aside class="col-sm-7" style="background-color: #F5F5F5;">
                     <article class="card-body p-5" id="{{$detail->id}}">
-                        <h3 class="title mb-0" id="product_title" value="{{$detail->id}}">{{$detail->productName }}</h3>
+                        <h3 class="title mb-3" id="product_title" value="{{$detail->id}}">{{$detail->productName }}</h3>
                         <h5 class="title mb-3" style="font-size: 10px; margin-top: 3px;">Mã SKU: 
                             <span id="sku" value="{{$detail->skuCode}}">{{$detail->skuCode}}</span>
                         </h5>
@@ -76,11 +76,12 @@
                             </span>
                         </p>
                         <!-- price-detail-wrap .// -->
-                        <!--
+
                         <dl class="item-poperty">
-                            <dt></dt>
-                            <dd></dd>
+                            <dt>Mô tả sản phẩm</dt>
+                            <dd>{{$detail->productDescript}}</dd>
                         </dl>
+                        <!--
                         <dl class="param param-feature">
                             <dt></dt>
                             <dd></dd>
@@ -127,7 +128,6 @@
                                     </dd>
                             </dl>
                             @endforeach
-
                             <!-- item-property-hor .// -->
                             <!-- item-property-hor .// -->
                             <hr>
@@ -143,138 +143,136 @@
                                     </dl>
                                     <!-- item-property .// -->
                                 </div>
-                                <!-- col.// -->
                                 <div class="col-sm-7">
+                                    
                                     <!--
-                                <dl class="param param-inline">
-                                    <dt>Size: </dt>
-                                    <dd>
-                                        <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <span class="form-check-label">SM</span>
-                                        </label>
-                                        <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <span class="form-check-label">MD</span>
-                                        </label>
-                                        <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <span class="form-check-label">XXL</span>
-                                        </label>
-                                    </dd>
-                                </dl>
-                                -->
-                                    <!-- item-property .// -->
+                                    <dl class="param param-inline">
+                                        <dt>Size: </dt>
+                                        <dd>
+                                            <label class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <span class="form-check-label">SM</span>
+                                            </label>
+                                            <label class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <span class="form-check-label">MD</span>
+                                            </label>
+                                            <label class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <span class="form-check-label">XXL</span>
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                    -->
                                 </div>
                                 <!-- col.// -->
                             </div>
                             <!-- row.// -->
                             <br>
-                            <a href="#" class="btn btn-md btn-primary text-uppercase" style="border-radius: 0;"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
-                            <a href="#" class="btn btn-md btn-primary text-uppercase" style="border-radius: 0;"><i class="fa fa-credit-card"></i> Mua ngay</a>
+                            <a href="#" class="btn btn-md btn-primary text-uppercase" style="border-radius: 1;"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                            <a href="#" class="btn btn-md btn-primary text-uppercase" style="border-radius: 1;">Mua ngay  <i class="fa fa-angle-double-right"></i></a>
+                          
                     </article>
                     <!-- card-body.// -->
-                </aside>
-                <!-- col.// -->
-                <!-- row.// -->
-            </div>
-            <!-- card.// -->
-        </div>
-        <!--container.//-->
-        <br>
-        <br>
-        <br> @include('includes.footer')
-        <!-- Bootstrap core JavaScript -->
-        <script>
+                </aside> <!-- col.// -->
+            </div>  <!-- row.// -->     
+        </div> <!-- card.// -->
         
+    </div>
+    <!--container.//-->
+    <br>
+    <br>
+    <br>
+    @include('includes.footer')
+    <!-- Bootstrap core JavaScript -->
+    <script>
+    $(document).ready(function() {
 
-        $(document).ready(function() {
-            
-            var productID = $("#product_title").attr("value");
-            var skuCode = $("#sku").attr("value");
-            var urlString = '/getVariants';
-            
+        var productID = $("#product_title").attr("value");
+        var skuCode = $("#sku").attr("value");
+        var urlString = '/getVariants';
+
+        $.ajax({
+            type: "GET",
+            url: urlString,
+            data: { skuCode: skuCode },
+            success: function(data) {
+                var jsonData = JSON.parse(data);
+                for (var i = 0; i < jsonData.result.length; i++) {
+                    var counter = jsonData.result[i];
+                    $("#value_variant" + counter.valueID).prop("checked", true);
+                }
+            }
+        });
+
+        $(".other-choose").change(function() {
+            var variantPair = new Array();
+            $("#variant-choose > div").each(function() {
+                var optionID = $(this).attr('value');
+                var selectedValue = $(this).find('input:checked').attr('value');
+                variantPair.push([optionID, selectedValue]);
+            });
             $.ajax({
                 type: "GET",
-                url: urlString,
-                data: { skuCode: skuCode },
+                url: '/getSkuCode',
+                data: { productID: productID, values: variantPair },
                 success: function(data) {
                     var jsonData = JSON.parse(data);
-                    for (var i = 0; i < jsonData.result.length; i++) {
-                        var counter = jsonData.result[i];
-                        $("#value_variant" + counter.valueID).prop("checked", true);
-                    }
+                    $("#sku").text(jsonData.result.skuCode);
+                },
+                error: function(xhr, textStatus, thrownError) {
+                    alert(' Error!');
                 }
+            })
+        });
+
+        $(".color-choose").change(function() {
+            var variantPair = new Array();
+            $("#variant-choose > div").each(function() {
+                var optionID = $(this).attr('value');
+                var selectedValue = $(this).find('input:checked').attr('value');
+                variantPair.push([optionID, selectedValue]);
             });
 
-            $(".other-choose").change(function() {
-                var variantPair = new Array();
-                $("#variant-choose > div").each(function() {
-                    var optionID = $(this).attr('value');
-                    var selectedValue = $(this).find('input:checked').attr('value');
-                    variantPair.push([optionID, selectedValue]);
-                });
-                $.ajax({
-                    type: "GET",
-                    url: '/getSkuCode',
-                    data: { productID : productID, values : variantPair},
-                    success: function(data) {
-                        var jsonData = JSON.parse(data);
-                        $("#sku").text(jsonData.result.skuCode);
-                    },
-                    error: function(xhr, textStatus, thrownError) {
-                        alert(' Error!');
-                    }
-                })
-            });
-
-            $(".color-choose").change(function() {
-                var variantPair = new Array();
-                $("#variant-choose > div").each(function() {
-                    var optionID = $(this).attr('value');
-                    var selectedValue = $(this).find('input:checked').attr('value');
-                    variantPair.push([optionID, selectedValue]);
-                });
-
-                $.ajax({
-                    type: "GET",
-                    url: '/getSkuCode',
-                    data: { productID : productID, values : variantPair},
-                    success: function(data) {
-                        var jsonData = JSON.parse(data);
-                        $.ajax({
-                            type: "GET",
-                            url: '/getSkuCode/changeImage',
-                            data: {skuCode: jsonData.result.skuCode},
-                            success: function(data) {
-                                var jsonData = JSON.parse(data);
-                                $("#sku-image").attr('src',jsonData.result.url);
-                                $("#sku").text(jsonData.result.skuCode);
-                            },
-                            error: function(xhr, textStatus, thrownError) {
-                                alert(' Error!');
-                            }
-                        })
-                    },
-                    error: function(xhr, textStatus, thrownError) {
-                        alert(' Error!');
-                    }
-                })
-                
-            });
+            $.ajax({
+                type: "GET",
+                url: '/getSkuCode',
+                data: { productID: productID, values: variantPair },
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    $.ajax({
+                        type: "GET",
+                        url: '/getSkuCode/changeImage',
+                        data: { skuCode: jsonData.result.skuCode },
+                        success: function(data) {
+                            var jsonData = JSON.parse(data);
+                            $("#sku-image").attr('src', jsonData.result.url);
+                            $("#sku").text(jsonData.result.skuCode);
+                        },
+                        error: function(xhr, textStatus, thrownError) {
+                            alert(' Error!');
+                        }
+                    })
+                },
+                error: function(xhr, textStatus, thrownError) {
+                    alert(' Error!');
+                }
+            })
 
         });
-        
-   
-        
-        /*
-        $("#variant-choose").ready(function() {
-            var productID = $("#product_title").attr("value");
-            
 
-        });
-        */
-        </script>
+    });
+
+
+
+    /*
+    $("#variant-choose").ready(function() {
+        var productID = $("#product_title").attr("value");
+        
+
+    });
+    */
+    </script>
 </body>
 
 </html>
