@@ -10,5 +10,4 @@ class Customer extends Model
     protected $table = 'customers';
 	public $timestamp = true;
 
-	
 }

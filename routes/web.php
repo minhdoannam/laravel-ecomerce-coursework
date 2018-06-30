@@ -20,10 +20,17 @@ Route::get('/', function () {
 Route::get('/', ['uses' => 'categoryController@getAllCategories']);
 */
 
-Route::get('/','homeController@index');
+Route::get('/','HomeController@index');
 
-Route::get('detail/{id}', 'homeController@productDefaultDetail');
+Route::get('detail/{id}', 'HomeController@productDefaultDetail');
 
 Route::get('/getVariants', ['uses' => 'VariantController@getValuesBySku']);
 Route::get('/getSkuCode' , ['uses' => 'VariantController@getSkuByValues']);
 Route::get('/getSkuCode/changeImage' , ['uses' => 'ImageController@changeImage']);
+
+Route::get('/cart/add/{sku}', ['as' => 'addCart', 'uses' => 'CartController@add']);
+Route::get('/cart/remove/{rowID}',['as' => 'removeCart', 'uses' => 'CartController@remove']);
+Route::get('/cart/update/{rowID}', ['as' => 'updateCart', 'uses' =>'CartController@update']);
+Route::get('/cart/destroy',['as' => 'destroyCart', 'uses' =>'CartController@destroy']);
+Route::get('/checkout','CartController@checkout');
+

@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    @include('includes.head')
-    <title>MDN Boutique</title>
-</head>
+@section('title')
+    MDN Boutique
+@stop
 
-<style>
+@section('style')
 a {
     color: black;
-}
+}   
 
 a:hover {
     color: #544949;
 }
-</style>
-<body>
-    <!-- Navigation -->
-    @include('includes.nav')
-    <header>
+@stop
+
+@section ('header')
+	<header>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -58,9 +55,10 @@ a:hover {
       </a>
         </div>
     </header>
-    <!-- Page Content -->
-    <div class="container">
-        <h1 class="my-4">Sản phẩm mới nhất</h1>
+@stop
+
+@section('content')
+    <h1 class="my-4">Sản phẩm mới nhất</h1>
         <!-- Marketing Icons Section -->
         <div class="row">
             @foreach ($idSanphamMoi as $id)
@@ -189,13 +187,9 @@ a:hover {
             </div>
         </div>
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
-    @include('includes.footer')
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+            <!-- Modal giỏ hàng -->
+            <!-- End Model giỏ hàng -->
+	<script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+@stop

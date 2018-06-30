@@ -15,5 +15,4 @@ class SkuController extends Controller
 		$result = Sku::find($defaultSkuCode);
 		return $result;
     }
-	
 }

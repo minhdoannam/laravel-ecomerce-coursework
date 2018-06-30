@@ -18,7 +18,7 @@ class ImageController extends Controller
     	if ($request->ajax()) {
     		$result = DB::table('images')->where('skuCode',$skuCode)->first();
     	}
-    	 $return_array = compact('result');
+    	$return_array = compact('result');
         return json_encode($return_array);
     }
 }
