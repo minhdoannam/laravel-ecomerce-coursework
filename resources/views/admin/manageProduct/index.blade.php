@@ -244,7 +244,9 @@
 								@endforeach -->
 
 							<td>{{ $pl -> Categories->categoryName }}</td> 	
-							<td> {{ $pl -> productDescript }}</td> 
+							<td style="max-width: 60px; text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;"> {{ $pl -> productDescript }}</td> 
 							<td>{{$pl -> price }}</td>
 							<td class="center" id="variant"  >
 								<a href="admin/product/{{$pl->id}}">

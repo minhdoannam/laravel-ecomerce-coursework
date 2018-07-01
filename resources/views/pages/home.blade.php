@@ -68,11 +68,11 @@ a:hover {
             <div class="col-lg-3">
                 <div class="dvproduct">
                     <a href="{{ url('detail', [$sp->id]) }}">
-                        <img src="{{ $sp->defaultImage }}" class="imgProduct">
+                        <img src="/storage/product/{{ $sp->defaultImage }}" class="imgProduct">
                        
                     </a>
                      <strong>{{ $sp->productName }}</strong>
-                    <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($sp->id),0,",","."  )}} VND</p>
+                    <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($sp->id),0,",","." )}} VND</p>
                 </div>
             </div>
             @endforeach
@@ -92,7 +92,7 @@ a:hover {
                     <div class="col-lg-3">
                         <div class="dvproduct">
                             <a href="{{ url('detail', [$sp->id])}}">
-                                <img src="{{$spl->defaultImage}}" class="imgProduct">
+                                <img src="/storage/product/{{$spl->defaultImage}}" class="imgProduct">
                                 
                             </a>
                             <strong>{{$spl->productName}}</strong>

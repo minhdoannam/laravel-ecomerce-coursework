@@ -31,7 +31,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="services.html">Login</a>
+            <a class="nav-link" href="/login">Login</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#myModal">  
@@ -72,7 +72,7 @@
                     <tr class="cart-row" value="{{$row->rowId}}">
                         <td data-th="product">
                             <div class="row">
-                                <div class="col-sm-2 hidden-xs"><img src="{{\App\Http\Controllers\ImageController::getImage($row->id)}}" alt="" class="img-responsive" style="height: 100px; width: 100px;"></div>
+                                <div class="col-sm-2 hidden-xs"><img src="/storage/product/{{\App\Http\Controllers\ImageController::getImage($row->id)}}" alt="" class="img-responsive" style="height: 100px; width: 100px;"></div>
 
                             </div>
                         </td>
@@ -123,8 +123,10 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-info" style="border-radius: 0;" data-dismiss="modal"><i class="fa fa-toggle-left"></i> Tiếp tục mua sắm</button>
              <button  id="cart-destroy" type="button" class="btn btn-warning" style="border-radius: 0; float: left;" data-dismiss="modal"><i class="fa fa-cart-arrow-down"></i> Xóa giỏ hàng</button>
-             
-            <button href="{{ url('/checkout') }}" id="cart-checkout" type="button" class="btn btn-success" style="border-radius: 0;" data-dismiss="modal"><i class="fa fa-credit-card"></i> Thanh toán</button>
+            <form action="/checkout" method="GET">
+                  <button  id="cart-checkout" type="submit" class="btn btn-success" style="border-radius: 0;"><i class="fa fa-credit-card"></i> Thanh toán</button>
+            </form>
+              
         </div>
         
     </div>
@@ -212,6 +214,7 @@
                 return false;
             }
          })
+        
 
         $(".cart-delete-item").click(function() {
             if (confirm("Có chắc muốn xóa khỏi giỏ hàng?") == true) {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Sku;
-use App\Product;
+use App\Products;
 use App\Pricelist;
 
 class CartController extends Controller
@@ -16,7 +16,7 @@ class CartController extends Controller
 		$productID = $_GET['productID'];
 		$quantity = $_GET['quantity'];
 
-		$productFind = Product::find($productID);
+		$productFind = Products::find($productID);
 		$productName = $productFind->productName;
 
 		$price = \App\Http\Controllers\PricelistController::getPriceByProductID($productFind->id);

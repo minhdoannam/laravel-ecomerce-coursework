@@ -9,7 +9,7 @@ class SkuController extends Controller
 {
     //
     public function getDefaultSku ($productID) {
-    	$product = Product::find($productID);
+    	$product = Products::find($productID);
     	$defaultImage = $product->defaultImage;
     	$defaultSkuCode = (DB::table('images')->where('url', $defaultImage)->get())->skuCode;
 		$result = Sku::find($defaultSkuCode);

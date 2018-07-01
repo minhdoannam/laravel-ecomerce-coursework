@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Products;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -11,13 +11,14 @@ class ProductController extends Controller
 {
     //
 	public static function getProductByID ($productID) {
-		$result = Product::find($productID);
+		$result = Products::find($productID);
 		return $result;
 	}
 	
 	public static function getProductByCategory($categoryID) {
-		$result = DB::table('product')
+		$result = DB::table('products')
 				->where('categoryID', $categoryID)
+				->where('active', 1)
 				->get();
 		return $result;
 	}

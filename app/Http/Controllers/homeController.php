@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
-use App\Product;
+use App\Products;
+use App\Variants;
+use App\Images;
+use App\Skus;
+use App\Options;
+use App\Option_values;
+
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -14,7 +20,7 @@ class HomeController extends Controller
 		$theloai = DB::table('categories')->take(2)->get();
 		view()->share('theloai', $theloai);
 		
-		$idSanphamMoi = DB::table('products')->select('id')->orderBy('id', 'desc')->take(4)->get();
+		$idSanphamMoi = DB::table('products')->select('id')->where('active', 1)->orderBy('id', 'desc')->take(4)->get();
 		view()->share('idSanphamMoi', $idSanphamMoi);
 	}
 
@@ -26,15 +32,14 @@ class HomeController extends Controller
 		return $result;
 	}
 	public function productDefaultDetail($productID) {
-		$product = Product::find($productID);
-    	$defaultImage = $product->defaultImage;
-    	$defaultSkuCode = (DB::table('images')->where('url', $defaultImage)->first())->skuCode;
-		$detail = DB::table('products')
-				->join('skus', 'products.id', '=', 'skus.productID')
-				->select('products.id', 'productName','productDescript', 'skuCode', 'inStock')
-				->where('skuCode','=',$defaultSkuCode)
-				->first();
-		return view('pages/detail',compact('detail'));
+		$product = Products::find($productID);
+		$skuList = Skus::where([['productID','=',$productID],['active','=',1]])->get();
+		$variantList= Variants::all();
+		$optionList = Options::where([['isActive','=',1]])->get();
+		$valueList = Option_values::where([['isActive','=',1]])->get();
+    	
+		
+		return view('pages/detail',['optionList'=>$optionList, 'valueList'=>$valueList,'product'=>$product, 'skuList'=>$skuList, 'variantList'=>$variantList]);
 	}
 	public function index() {
 		return view('pages/home');

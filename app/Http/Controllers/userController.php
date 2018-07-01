@@ -26,4 +26,26 @@ class userController extends Controller
         Auth::logout();
         return redirect('admin/login');
     }
+
+    public function customerLogin(){
+        if(Auth::user()->isAdmin == 0) 
+            return redirect('/');
+        else
+            return view('pages.login');
+    }
+
+    public function customerLoginAuth(Request $request){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+            return redirect('/');
+        else
+            return view('pages.login')->with('message','Log in failed!');
+    }
+
+    public function customerLogout(){
+        Auth::logout();
+        return redirect('/');
+    }
+
+
+
 }

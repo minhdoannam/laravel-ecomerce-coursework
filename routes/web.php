@@ -90,3 +90,7 @@ Route::get('/cart/update/{rowID}', ['as' => 'updateCart', 'uses' =>'CartControll
 Route::get('/cart/destroy',['as' => 'destroyCart', 'uses' =>'CartController@destroy']);
 Route::get('/checkout','CartController@checkout');
 
+Route::get('/login', 'userController@customerLogin');
+Route::post('/login', 'userController@customerLoginAuth');
+Route::post('/logout', 'userController@customerLogout');
+

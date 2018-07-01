@@ -18,6 +18,17 @@ class VariantController extends Controller
     	return $result;
     }
 
+    public static function getVariantColor($skuCode) {
+        $query = DB::table("variants")
+                ->where('skuCode', $skuCode)
+                ->where('optionID',1)
+                ->select('valueID')
+                ->get();
+        
+        $result = $query->first()->valueID;
+        return $result;
+    }
+
     public static function getVariantValue($productID, $optionID) {
         $result = DB::table("variants")
                 ->join('skus','skus.skuCode','=','variants.skuCode')
