@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Sale_order;
 use Carbon\Carbon;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class OrderController extends Controller
 {
@@ -14,10 +15,11 @@ class OrderController extends Controller
 		
 		//Kiểm tra xem ngưởi dùng có trong email chưa? Nếu chưa có thì thêm vào...
 		$email = $req->email;
-		$queryCustomer = DB::table('users')->where('email', $email);
-		$cus;
-		if (empty($queryCustomer)) {
+		$queryCustomer = DB::table('users')->where('email', $email)->get();
+		$cus = null;
+		if ($queryCustomer->isEmpty()) {
 			DB::table('users')->insert([
+				'email' => $email,
 				'firstName'=> $req->firstName,
 				'lastName' => $req->lastName,
 				'verified' => 0,
@@ -29,17 +31,17 @@ class OrderController extends Controller
 				'isAdmin' => 0,
 				'isActive' => 0
 			]);
-			$cus = DB::table('users')->where('email', $email)->select('id')->get();
-
+			$cus = DB::table('users')->where('email', $email)->select('id')->get()->first();
 		}
 		else {
-			$cus = DB::table('users')->where('email', $email)->select('id')->get();
+			$cus = DB::table('users')->where('email', $email)->select('id')->get()->first();
 		}
 		//Lấy id để thêm vào...
 		//Thêm vào sale_order
-		DB::table('users')->insert(
-    		['paymentType' => $req->paymenMethod,
-    			'customer' => $cus->first()->id,
+		DB::table('sale_order')->insert(
+    		[
+    			'paymentType' => $req->paymenMethod,
+    			'customer' => $cus->id,
     			'orderedDate' => Carbon::now(),
     			'orderPhone' => $req->phone,
     			'orderAddress1' => $req->address,
@@ -49,7 +51,23 @@ class OrderController extends Controller
     			'stt' => 1
     		]
 		);
+
+		$sale_order = DB::table('sale_order')
+					->where('customer', $cus->id)
+					->orderBy('id', 'desc')
+					->get()
+					->first();
+
+		$cart_content = Cart::content();
+		foreach ($cart_content as $row)
+			DB::table('order_line')->insert([
+				'orderID' => $sale_order->id,
+				'skus' => $row->id,
+				'quantity' => $row->qty
+			]);
 		
-    	return view('pages.order')->compact('order', $sale_order);
+		Cart::destroy();
+
+    	return view('pages.order')->with('order', $sale_order);
     }
 }

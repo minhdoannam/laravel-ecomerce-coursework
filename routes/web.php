@@ -98,7 +98,7 @@ Route::post('/order', ['as' => 'order' , 'uses' => 'OrderController@checkout']);
 Route::get('/login', ['as' => 'login' , 'uses' => 'customerController@customerLogin']);
 Route::post('/login', ['as' => 'login' , 'uses' =>'customerController@customerLoginAuth']);
 
-Route::get('logout', 'customerController@customerLogout');
+Route::get('/logout', ['as'=> 'logut', 'uses' =>'customerController@customerLogout']);
 Route::get('/signup', ['as' => 'signup' , 'uses' => 'customerController@customerSignUp'] );
 Route::get('/forgot', ['as' => 'forgot' , 'uses' => 'customerController@customerForgot'] );
 Route::get('/search', ['as' => 'search' , 'uses' => 'ProductController@searchProduct']);

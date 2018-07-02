@@ -84,6 +84,7 @@ Thanh toán đơn hàng
     <h4 class="mb-3">Thông tin đơn hàng</h4>
     @if ($user)
     <form method="POST" action="order">
+      {{ csrf_field() }}
       <div clas="needs-validation">
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -246,7 +247,8 @@ Thanh toán đơn hàng
       <hr class="mb-4">
     </div>
     @else 
-    <form method="POST" action="order"> 
+    <form method="POST" action="order">
+    {{ csrf_field() }}
     <div class="needs-validation">
       <div class="row">
         <div class="col-md-6 mb-3">

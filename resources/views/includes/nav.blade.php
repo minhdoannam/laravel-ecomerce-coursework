@@ -45,7 +45,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                     <a class="dropdown-item" href="">Quản lý tài khoản</a>
                     <a class="dropdown-item" href="">Quản lý đơn hàng</a>
-                    <a class="dropdown-item" href="logout">Đăng xuất</a>
+                    <a class="dropdown-item" href="/logout">Đăng xuất</a>
             </div>
         </li>
 

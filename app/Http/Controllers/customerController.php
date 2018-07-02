@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 class customerController extends Controller
 {  
-    function __construct() {
-
+    public static function customerByID($cusId) {
+        return DB::table('users')->where('isAdmin', 0)->where('id', $cusId)->get()->first();
     }
    public function customerLogin(){
         return view('pages.login');
@@ -20,7 +21,7 @@ class customerController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'isAdmin' => 0])) 
             return redirect('/');
         else
-            return view('pages.login')->with('message','Log in failed!');
+            return redirect()->back()->with(['flag' => 'danger','message' => 'Đăng nhập không thành công']);
         
     }
     

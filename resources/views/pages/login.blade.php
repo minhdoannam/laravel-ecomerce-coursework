@@ -56,7 +56,11 @@ border-top-right-radius: 0;
       <img class="mb-4" src="/storage/img/sf-logo.png" alt="" width="150" height="150">
       <h1 class="h3 mb-3 font-weight-normal">Xin chào đến với Sunfrogs</h1>
     </div>  
-
+    @if (Session::has('flag'))
+    <div class="alert alert-danger" role="alert">
+      {{ Session::get('message') }}
+    </div>
+  @endif
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
