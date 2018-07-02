@@ -81,8 +81,8 @@ Route::group(['prefix'=>'admin','middleware' => 'adminAuth'],function(){
 /* Client Route */
 Route::get('/','HomeController@index');
 
-Route::get('detail/{id}', 'HomeController@productDefaultDetail');
-Route::get('category/{id}', 'ProductController@getProducPageCategory');
+Route::get('/detail/{id}', 'HomeController@productDefaultDetail');
+Route::get('/category/{id}', 'ProductController@getProducPageCategory');
 
 Route::get('/getVariants', ['uses' => 'VariantController@getValuesBySku']);
 Route::get('/getSkuCode' , ['uses' => 'VariantController@getSkuByValues']);
@@ -93,9 +93,14 @@ Route::get('/cart/remove/{rowID}',['as' => 'removeCart', 'uses' => 'CartControll
 Route::get('/cart/update/{rowID}', ['as' => 'updateCart', 'uses' =>'CartController@update']);
 Route::get('/cart/destroy',['as' => 'destroyCart', 'uses' =>'CartController@destroy']);
 Route::get('/checkout','CartController@checkout');
+Route::post('/order', ['as' => 'order' , 'uses' => 'OrderController@checkout']);
 
 Route::get('/login', ['as' => 'login' , 'uses' => 'customerController@customerLogin']);
 Route::post('/login', ['as' => 'login' , 'uses' =>'customerController@customerLoginAuth']);
+
 Route::get('logout', 'customerController@customerLogout');
 Route::get('/signup', ['as' => 'signup' , 'uses' => 'customerController@customerSignUp'] );
 Route::get('/forgot', ['as' => 'forgot' , 'uses' => 'customerController@customerForgot'] );
+Route::get('/search', ['as' => 'search' , 'uses' => 'ProductController@searchProduct']);
+
+

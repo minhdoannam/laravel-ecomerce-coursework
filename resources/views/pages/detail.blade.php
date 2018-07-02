@@ -43,6 +43,11 @@
                       <span class="currency"> <u>đ</u></span>
                   </span>
               </p>
+                <span id="product-descript" style="display:block; text-overflow: ellipsis; width: 400px;
+              overflow: hidden; white-space: nowrap; font-size: 13px;">
+                    {{$product->productDescript}} 
+                </span>
+                <br>
               <dl class="param param-feature">
                 <dt style="font-weight: lighter; font-style: italic; color: #808080;" value="">Chọn màu sắc</dt>
                 <!-- Đổ ra các dữ liệu lựa chọn, màu, kích thước -->
@@ -67,13 +72,14 @@
             <dl class="param param-feature">
                 <dt style="font-weight: lighter; font-style: italic; color: #808080;" value="">Các biến thể</dt>
                 <!-- Đổ ra các dữ liệu lựa chọn, màu, kích thước -->
+                <br>
                 <dd id="sku-table">
                     <div class="table-responsive">
                         <table class="table table-sm table-borderless" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr align="center">
                                     <th style="width: 33%">Mã SKU</th>
-                                    <th>Còn hàng</th>
+                                    <th>Tồn kho</th>
                                     <th>Size</th>
                                     <th></th>
                                 </tr>

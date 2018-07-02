@@ -32,4 +32,12 @@ class ProductController extends Controller
 		$category = Categories::find($categoryID);
 		return view('pages.category', ['productList' => $result, 'category' => $category]);
 	}
+
+	public function searchProduct(Request $req) {
+		$keyword = $req->keyword;
+		$result = Products::where('active', 1)
+							->where('productName', 'like', '%'.$keyword.'%')
+							->get();
+		return view('pages.search', ['productList' => $result, 'keyword' => $keyword]);
+	}
 }

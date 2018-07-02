@@ -9,7 +9,7 @@ use App\User;
 class customerController extends Controller
 {  
     function __construct() {
-       
+
     }
    public function customerLogin(){
         return view('pages.login');
@@ -23,7 +23,7 @@ class customerController extends Controller
             return view('pages.login')->with('message','Log in failed!');
         
     }
-
+    
     public function customerLogout(){
         Auth::logout();
         return redirect('/');

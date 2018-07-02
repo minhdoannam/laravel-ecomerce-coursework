@@ -6,11 +6,11 @@
     </button>
     <!--Search bar --->
     <div class="search-container">
-        <form class="input-with-submit header-search" method="GET">
+        <form class="input-with-submit header-search" method="GET" action="/search">
             <div class="input-group" id="search-container">
                 <input type="text" class="form-control" placeholder="Tìm kiếm..." name="keyword">
                 <span class="input-group-button">
-                    <button class="btn btn-default" style="background-color: orange" type="submit">
+                    <button href=""class="btn btn-default" style="background-color: orange" type="submit">
                       <i class="fa fa-search" id="icColor"></i>
                   </button>
               </span>
