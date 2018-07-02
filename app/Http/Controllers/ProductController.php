@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use App\Categories;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -21,5 +22,14 @@ class ProductController extends Controller
 				->where('active', 1)
 				->get();
 		return $result;
+	}
+
+	public function getProducPageCategory($categoryID) {
+		$result = DB::table('products')
+				->where('categoryID', $categoryID)
+				->where('active', 1)
+				->get();
+		$category = Categories::find($categoryID);
+		return view('pages.category', ['productList' => $result, 'category' => $category]);
 	}
 }

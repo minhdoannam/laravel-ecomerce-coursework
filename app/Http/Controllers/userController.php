@@ -51,7 +51,11 @@ class userController extends Controller
         return redirect('/');
     }
 
-     public function customerRegister(){
-        
+     public function customerSignUp(){
+        return view('pages.signup');
+    }
+
+    public function customerForgot(){
+        return view ('pages.forgot');
     }
 }

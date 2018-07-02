@@ -37,9 +37,15 @@ class HomeController extends Controller
 		$variantList= Variants::all();
 		$optionList = Options::where([['isActive','=',1]])->get();
 		$valueList = Option_values::where([['isActive','=',1]])->get();
-    	
+
+		$relatedProducts = DB::table('products')
+		->where('active', 1)
+		->where('id', '<>', $productID)
+		->orderBy('id', 'desc')
+		->take(4)
+		->get();
 		
-		return view('pages/detail',['optionList'=>$optionList, 'valueList'=>$valueList,'product'=>$product, 'skuList'=>$skuList, 'variantList'=>$variantList]);
+		return view('pages/detail',['optionList'=>$optionList, 'valueList'=>$valueList,'product'=>$product, 'skuList'=>$skuList, 'variantList'=>$variantList, 'relatedProducts' => $relatedProducts]);
 	}
 	public function index() {
 		return view('pages/home');

@@ -8,5 +8,7 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     //
-    
+    public function checkout() {
+    	
+    }
 }

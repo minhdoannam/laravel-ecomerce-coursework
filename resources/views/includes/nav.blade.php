@@ -25,9 +25,12 @@
                 Sản phẩm
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="#">T-shirt</a>
-                <a class="dropdown-item" href="#">Polo shirt</a>
-                <a class="dropdown-item" href="#">Hoodie</a>
+                <?php
+                    $categories = \App\Http\Controllers\CategoryController::getAllCategories();
+                  ?>
+                  @foreach ($categories as $cate)
+                     <a class="dropdown-item" href="{{ url('/category', [$cate->id]) }}" value="{{ $cate->id }}">{{ $cate->categoryName }}</a>
+                  @endforeach
             </div>
         </li>
         <li class="nav-item">

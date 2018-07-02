@@ -18,20 +18,22 @@
 <!--  Có thể chèn vào đây các sản phẩm khác! -->
 <div class="card">
     <div class="row">
-        <aside class="col-sm-5 border-right">
+        <aside class="col-sm-5 boder-right">
             <article class="gallery-wrap">
                 <div class="img-big-wrap">
                     <div> <a href="#"><img id="sku-image" src="/storage/product/{{$product->defaultImage}}"></a></div>
                 </div>
                 <!-- slider-product.// -->
+                <!--
                 <div class="img-small-wrap">
                     <div class="item-gallery"> <img src=""> </div>   
                 </div>
+            -->
                 <!-- slider-nav.// -->
             </article>
             <!-- gallery-wrap .end// -->
         </aside>
-        <aside class="col-sm-7" style="background-color: #F5F5F5;">
+        <aside class="col-sm-7 border-right" style="background-color: #F5F5F5;">
             <article class="card-body p-5" id="{{$product->id}}">
                 <h3 class="title mb-0" id="product-title" value="{{$product->id}}">{{$product->productName }}</h3>
                 <span id="sku" value="{{$skuList->first()->skuCode}}"></span>
@@ -77,33 +79,33 @@
                                 </tr>
                             </thead>
                             <tbody id="sku-list">
-                               @foreach ($skuList as $sl)
-                               <tr class="odd gradeX color-class{{ \App\Http\Controllers\VariantController::getVariantColor($sl->skuCode) }}" align="center" > 
+                             @foreach ($skuList as $sl)
+                             <tr class="odd gradeX color-class{{ \App\Http\Controllers\VariantController::getVariantColor($sl->skuCode) }}" align="center" > 
                                 <td value = "{{$sl->skuCode}}"> {{ $sl -> skuCode }} </td>
                                 <td>{{$sl->inStock}}</td>
-                        <!-- hiển thị atributte -->
-                        <td>
-                            @foreach($variantList as $vl)
-                            @if($vl->skuCode==$sl -> skuCode && $vl->optionID != 1)
-                            {{$vl->Option_values->valueName}}<br>
-                            @endif
-                            @endforeach
-                        </td>
+                                <!-- hiển thị atributte -->
+                                <td>
+                                    @foreach($variantList as $vl)
+                                    @if($vl->skuCode==$sl -> skuCode && $vl->optionID != 1)
+                                    {{$vl->Option_values->valueName}}<br>
+                                    @endif
+                                    @endforeach
+                                </td>
 
-                        <td class="center add-to-cart"  > 
-                            <i class="fa fa-shopping-cart"></i>
-                        </td>
-                    </tr> 
-                    @endforeach 
-                </tbody>
-            </table>
-        </div>
-    </dd>
-</dl>
+                                <td class="center add-to-cart"  > 
+                                    <i class="fa fa-shopping-cart"></i>
+                                </td>
+                            </tr> 
+                            @endforeach 
+                        </tbody>
+                    </table>
+                </div>
+            </dd>
+        </dl>
 
-<!-- row.// -->
+        <!-- row.// -->
 
-<!--  <a href="#" id = "add-to-cart" class="btn btn-md btn-primary text-uppercase" style="border-radius: 0;"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a> -->
+        <!--  <a href="#" id = "add-to-cart" class="btn btn-md btn-primary text-uppercase" style="border-radius: 0;"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a> -->
                 <!--
                 <a href="{{url('cart')}}" class="btn btn-md btn-primary text-uppercase" style="border-radius: 0;"><i class="fa fa-credit-card"></i> Thanh toán</a>
             -->
@@ -113,7 +115,26 @@
     <!-- col.// -->
     <!-- row.// -->
 </div>
+
+
+</div>
 <!-- card.// -->
+<h3 class="my-4">Sản phẩm liên quan</h3>
+<div class="row">
+    @foreach ($relatedProducts as $item)
+    <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+     <div class="dvproduct">
+        <a href="{{ url('detail', [$item->id])}}">
+          <img src="/storage/product/{{$item->defaultImage}}" class="imgProduct">
+      </a>
+      <strong>{{$item->productName}}</strong>
+      <p class="price-tag"> {{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($item->id),0,",","." )}} VND</p>
+    </div>
+    </div>
+  @endforeach
+
+</div>
+<!-- /.row -->
 </div>
 <!--container.//-->
 <br>
@@ -207,10 +228,10 @@
                 success: function(data) {
                     var jsonData = JSON.parse(data);
                     var imageUrl  = '/storage/product/' + jsonData.result.url;
-                        $("#sku-image").attr('src', imageUrl);
-                        $("#sku").text(jsonData.result.skuCode);
-                        $("#sku").attr("value", jsonData.result.skuCode);
-                    },
+                    $("#sku-image").attr('src', imageUrl);
+                    $("#sku").text(jsonData.result.skuCode);
+                    $("#sku").attr("value", jsonData.result.skuCode);
+                },
                 error: function(xhr, textStatus, thrownError) {
                     alert(' Error!');
                 }

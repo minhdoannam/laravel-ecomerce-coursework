@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-Đăng nhập tài khoản
+Quên tài khoản
 @stop
 
 @section('style')
@@ -43,33 +43,29 @@ margin-bottom: 10px;
 border-top-left-radius: 0;
 border-top-right-radius: 0;
 }
-
-
 @stop
 
 @section('content')
-
 <div id="login-section">
   <form action="{{route('login')}}" method="POST"class="form-signin">
-    <div class="text-center">
+     <div class="text-center">
       <img class="mb-4" src="/storage/img/sf-logo.png" alt="" width="150" height="150">
-      <h1 class="h3 mb-3 font-weight-normal">Xin chào đến với Sunfrogs</h1>
-    </div>  
-
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Ghi nhớ tài khoản
-      </label>
-
+        <h1 class="h3 mb-3 font-weight-normal">Quên mật khẩu</h1>
+      </div>  
+       
+    <div class="form-group">
+      <label for="email">Địa chỉ Email</label>
+      <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+      <div class="form-text text-muted">
+        Gửi link reset password
+      </div>
     </div>
-    <button class="btn btn-lg btn-success btn-block" type="submit" style="border-radius: 0;">Đăng nhập</button>
-    <br>
-    <p class="mb-3" style="font-size: 14px;">Nếu chưa có tài khoản? <a href="/signup">Tạo ngay</a></p>        
-    <p class="mb-3"><a href="/forgot" style="font-size: 14px;">Quên mật khẩu</a></p>
+
+    <div class="form-group no-margin">
+      <button type="submit" class="btn btn-primary btn-block" style="border-radius: 0px;">
+        Reset mật khẩu
+      </button>
+    </div>
   </form>
 </div>
 

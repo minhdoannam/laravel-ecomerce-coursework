@@ -82,6 +82,7 @@ Route::group(['prefix'=>'admin','middleware' => 'adminAuth'],function(){
 Route::get('/','HomeController@index');
 
 Route::get('detail/{id}', 'HomeController@productDefaultDetail');
+Route::get('category/{id}', 'ProductController@getProducPageCategory');
 
 Route::get('/getVariants', ['uses' => 'VariantController@getValuesBySku']);
 Route::get('/getSkuCode' , ['uses' => 'VariantController@getSkuByValues']);
@@ -96,5 +97,5 @@ Route::get('/checkout','CartController@checkout');
 Route::get('/login', ['as' => 'login' , 'uses' => 'userController@customerLogin']);
 Route::post('/login', ['as' => 'login' , 'uses' =>'userController@customerLoginAuth']);
 Route::post('/logout', 'userController@customerLogout');
-Route::get('/register', ['as' => 'register' , 'uses' => 'userController@customerRegister'] );
-
+Route::get('/signup', ['as' => 'signup' , 'uses' => 'userController@customerSignUp'] );
+Route::get('/forgot', ['as' => 'forgot' , 'uses' => 'userController@customerForgot'] );

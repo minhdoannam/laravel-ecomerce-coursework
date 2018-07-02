@@ -179,18 +179,21 @@ Thanh toán đơn hàng
 
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
-          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-          <label class="custom-control-label" for="credit">COD <span class="text-muted"><small>(Thanh toán tại chỗ)</small></span></label>
+          <input id="cod" name="paymentMethod" type="radio" class="custom-control-input" checked required value="1">
+          <label class="custom-control-label" for="cod">COD <span class="text-muted"><i>(Thanh toán tại chỗ)</i></span></label>
+          <br>
+          <small class="text-muted">Quý khách chọn hình thức này không cần điền thông tin thẻ thanh toán!</small>
         </div>
         <div class="custom-control custom-radio">
-          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-          <label class="custom-control-label" for="debit">Thẻ ngân hàng</label>
+          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required value="2">
+          <label class="custom-control-label" for="debit">Thẻ ngân hàng debit</label>
         </div>
         <div class="custom-control custom-radio">
-          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-          <label class="custom-control-label" for="paypal">Paypal</label>
+          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" required value="3">
+          <label class="custom-control-label" for="credit">Thẻ tín dụng</label>
         </div>
       </div>
+      <div  id="payment-cart-information">
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="cc-name">Tên thẻ</label>
@@ -223,45 +226,15 @@ Thanh toán đơn hàng
             Security code required
           </div>
         </div>
-      </div>   <button class="btn btn-danger btn-lg btn-block" type="submit">Continue to checkout <i class="fa fa-cart-arrow-down"></i></button>
+      </div> 
+      </div> <!-- End information card -->   
+      <button class="btn btn-danger btn-lg btn-block" type="submit">Continue to checkout <i class="fa fa-cart-arrow-down"></i></button>
       <hr class="mb-4">
    
     </form>
   </div>
 </div>
 
-
-    <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-      <script src="../../assets/js/vendor/popper.min.js"></script>
-      <script src="../../dist/js/bootstrap.min.js"></script>
-      <script src="../../assets/js/vendor/holder.min.js"></script>
-      <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
-
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-      
-
-
-    </script>
-    @stop
+<script>
+</script>
+@stop
