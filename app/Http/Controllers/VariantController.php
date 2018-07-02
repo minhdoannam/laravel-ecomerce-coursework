@@ -39,7 +39,13 @@ class VariantController extends Controller
                 ->get();
         return $result;
     }
+    public static function getVariantCollection($skuCode) {
+        $result = DB::table("variants")
+                ->where('skuCode', $skuCode)
+                ->get();
 
+        return $result;
+    } 
     public function getValuesBySku(Request $request) {
         $skuCode = $_GET['skuCode'];
         $result = DB::table("variants")

@@ -1,4 +1,6 @@
 <?php
+/* Admin Route */
+
 Route::get('admin/login','userController@Login');
 
 Route::post('admin/login','userController@LoginAuth');
@@ -76,6 +78,7 @@ Route::group(['prefix'=>'admin','middleware' => 'adminAuth'],function(){
 	Route::get('revenue','revenueController@index');
 });
 
+/* Client Route */
 Route::get('/','HomeController@index');
 
 Route::get('detail/{id}', 'HomeController@productDefaultDetail');
@@ -90,7 +93,8 @@ Route::get('/cart/update/{rowID}', ['as' => 'updateCart', 'uses' =>'CartControll
 Route::get('/cart/destroy',['as' => 'destroyCart', 'uses' =>'CartController@destroy']);
 Route::get('/checkout','CartController@checkout');
 
-Route::get('/login', 'userController@customerLogin');
-Route::post('/login', 'userController@customerLoginAuth');
+Route::get('/login', ['as' => 'login' , 'uses' => 'userController@customerLogin']);
+Route::post('/login', ['as' => 'login' , 'uses' =>'userController@customerLoginAuth']);
 Route::post('/logout', 'userController@customerLogout');
+Route::get('/register', ['as' => 'register' , 'uses' => 'userController@customerRegister'] );
 

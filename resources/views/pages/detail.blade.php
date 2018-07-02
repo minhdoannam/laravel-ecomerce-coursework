@@ -8,6 +8,13 @@
 @section('content')
 <br>
 <br>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="index.html">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item active">{{$product->productName}}</li>
+</ol>
+
 <!--  Có thể chèn vào đây các sản phẩm khác! -->
 <div class="card">
     <div class="row">
@@ -132,9 +139,7 @@
                 for (var i = 0; i < jsonData.result.length; i++) {
                     var counter = jsonData.result[i];
                     $("#value_variant" + counter.valueID).prop("checked", true);
-
                     var colorID = $(".color-choose").find('input:checked').attr('value');
-
                     $("#sku-list > tr").hide();
                     $(".color-class" + colorID).show();
                 };
@@ -194,24 +199,22 @@
             var colorID = $(this).find('input:checked').attr('value');
             $("#sku-list tr").hide();
             $(".color-class" + colorID).show();
-            /*
-            var skuCode = $("")
-                    $.ajax({
-                        type: "GET",
-                        url: '/getSkuCode/changeImage',
-                        data: { skuCode: skuCode },
-                        success: function(data) {
-                            var jsonData = JSON.parse(data);
-                            $("#sku-image").attr('src', jsonData.result.url);
-                            $("#sku").text(jsonData.result.skuCode);
-                            $("#sku").attr("value", jsonData.result.skuCode);
-                        },
-                        error: function(xhr, textStatus, thrownError) {
-                            alert(' Error!');
-                        }
-                    })
-            })
-            */
+            var skuCode = $(".color-class" + colorID).find('td:eq(0)').attr("value");
+            $.ajax({
+                type: "GET",
+                url: '/getSkuCode/changeImage',
+                data: { skuCode: skuCode },
+                success: function(data) {
+                    var jsonData = JSON.parse(data);
+                    var imageUrl  = '/storage/product/' + jsonData.result.url;
+                        $("#sku-image").attr('src', imageUrl);
+                        $("#sku").text(jsonData.result.skuCode);
+                        $("#sku").attr("value", jsonData.result.skuCode);
+                    },
+                error: function(xhr, textStatus, thrownError) {
+                    alert(' Error!');
+                }
+            });
         });
         /*
         $(".color-choose").change(function() {

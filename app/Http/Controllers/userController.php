@@ -16,8 +16,8 @@ class userController extends Controller
     }
 
     public function LoginAuth(Request $request){
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
-            return redirect('admin/');
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'isAdmin' => 1]))
+                return redirect('admin/');
         else
             return redirect('admin/login')->with('message','Log in failed!');
     }
@@ -28,17 +28,22 @@ class userController extends Controller
     }
 
     public function customerLogin(){
-        if(Auth::user()->isAdmin == 0) 
-            return redirect('/');
-        else
-            return view('pages.login');
+        return view('pages.login');
     }
 
     public function customerLoginAuth(Request $request){
+
+        $this->validate($request, 
+            ['email' => 'required|email',
+                'password' => 'required| min:6|max:50'
+            ]);
+        
+        /*
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
             return redirect('/');
         else
             return view('pages.login')->with('message','Log in failed!');
+        */
     }
 
     public function customerLogout(){
@@ -46,6 +51,7 @@ class userController extends Controller
         return redirect('/');
     }
 
-
-
+     public function customerRegister(){
+        
+    }
 }

@@ -10,16 +10,14 @@
 	</style>
 </head>
 <body>
-    <div id="navigation">  
-        @include('includes.nav')
-    </div>
-
     @yield('header')
-
     <div class="container">
+        <div id="navigation">  
+            @include('includes.nav')
+        </div>  
         @yield('content')
+        
     </div>
-
     @include ('includes.footer')
 </body>
 </html>

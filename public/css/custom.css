@@ -236,14 +236,3 @@ display:block !important;
     float:right;
   }
 
-html, body {
-  height: 100%;
-  margin-bottom: 60px;
-}
-
-footer {
-  margin-top: 60px;
-  bottom: 0px;
-  overflow: hide;
-  width: 100%;
-}

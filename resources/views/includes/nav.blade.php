@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 <div class="container">
     <a class="navbar-brand" href="/"><img style="max-width: 50px; max-height: 50px; margin-top: -5px;" src="/storage/img/sf-logo.png"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,8 +78,15 @@
                         </td>
                         <td data-th="description" class="cart-description">
                             <span>{{$row->name}}</span>
-                            <span>Trắng, X</span>
-                            <span><p>{{$row->id}}</p></span>
+                            <span>
+                                <?php
+                                    $variants =  \App\Http\Controllers\VariantController::getVariantCollection($row->id);
+                                ?>
+                                @foreach ($variants as $vari)
+                                     {{ \App\Http\Controllers\ValueController::getValueByID($vari->valueID)->valueName}}
+                                @endforeach
+                            </span>
+                           
                         </td>
 
                         <td data-th="quantity" class="cart-quantity">
@@ -121,10 +128,10 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-            <button type="button" class="btn btn-info" style="border-radius: 0;" data-dismiss="modal"><i class="fa fa-toggle-left"></i> Tiếp tục mua sắm</button>
+            <button type="button" class="btn btn-success" style="border-radius: 0;" data-dismiss="modal"><i class="fa fa-toggle-left"></i> Tiếp tục mua sắm</button>
              <button  id="cart-destroy" type="button" class="btn btn-warning" style="border-radius: 0; float: left;" data-dismiss="modal"><i class="fa fa-cart-arrow-down"></i> Xóa giỏ hàng</button>
             <form action="/checkout" method="GET">
-                  <button  id="cart-checkout" type="submit" class="btn btn-success" style="border-radius: 0;"><i class="fa fa-credit-card"></i> Thanh toán</button>
+                  <button  id="cart-checkout" type="submit" class="btn btn-danger" style="border-radius: 0;"><i class="fa fa-credit-card"></i> Thanh toán</button>
             </form>
               
         </div>

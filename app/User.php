@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password','firstName', 'lastName'
+        'email', 'password','firstName', 'lastName', 'isAdmin'
     ];
 
     /**
@@ -23,8 +23,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'rememberToken', 'isAdmin'
+    protected $hidden = [   
+        'password', 'rememberToken', 
     ];
 
      public function city(){
@@ -33,6 +33,10 @@ class User extends Authenticatable
 
     public function saler_order(){
         return $this ->hasMany('App\Sale_order','customer','id' );
+    }
+
+    public function isAdmin() {
+        return $this->isAdmin; // this looks for an admin column in your users table
     }
 }
 
