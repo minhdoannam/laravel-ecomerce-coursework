@@ -94,8 +94,8 @@ Route::get('/cart/update/{rowID}', ['as' => 'updateCart', 'uses' =>'CartControll
 Route::get('/cart/destroy',['as' => 'destroyCart', 'uses' =>'CartController@destroy']);
 Route::get('/checkout','CartController@checkout');
 
-Route::get('/login', ['as' => 'login' , 'uses' => 'userController@customerLogin']);
-Route::post('/login', ['as' => 'login' , 'uses' =>'userController@customerLoginAuth']);
-Route::post('/logout', 'userController@customerLogout');
-Route::get('/signup', ['as' => 'signup' , 'uses' => 'userController@customerSignUp'] );
-Route::get('/forgot', ['as' => 'forgot' , 'uses' => 'userController@customerForgot'] );
+Route::get('/login', ['as' => 'login' , 'uses' => 'customerController@customerLogin']);
+Route::post('/login', ['as' => 'login' , 'uses' =>'customerController@customerLoginAuth']);
+Route::get('logout', 'customerController@customerLogout');
+Route::get('/signup', ['as' => 'signup' , 'uses' => 'customerController@customerSignUp'] );
+Route::get('/forgot', ['as' => 'forgot' , 'uses' => 'customerController@customerForgot'] );

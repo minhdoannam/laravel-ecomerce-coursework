@@ -74,7 +74,7 @@
                                 <tr align="center">
                                     <th style="width: 33%">Mã SKU</th>
                                     <th>Còn hàng</th>
-                                    <th>Thuộc tính</th>
+                                    <th>Size</th>
                                     <th></th>
                                 </tr>
                             </thead>

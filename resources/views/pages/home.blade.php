@@ -15,6 +15,7 @@ a:hover {
 @stop
 
 @section ('header')
+
 	<header>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -69,10 +70,9 @@ a:hover {
                 <div class="dvproduct">
                     <a href="{{ url('detail', [$sp->id]) }}">
                         <img src="/storage/product/{{ $sp->defaultImage }}" class="imgProduct">
-                       
                     </a>
-                     <strong>{{ $sp->productName }}</strong>
-                    <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($sp->id),0,",","." )}} VND</p>
+                     <strong>{{$sp->productName }}</strong>
+                    <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($sp->id),0,",","." ) }} VND</p>
                 </div>
             </div>
             @endforeach
@@ -89,16 +89,15 @@ a:hover {
                     $sanphamList = \App\Http\Controllers\HomeController::showProductByCategory($tl->id);
                 ?>
                     @foreach ($sanphamList as $spl)
-                    <div class="col-lg-3">
-                        <div class="dvproduct">
-                            <a href="{{ url('detail', [$sp->id])}}">
-                                <img src="/storage/product/{{$spl->defaultImage}}" class="imgProduct">
-                                
-                            </a>
-                            <strong>{{$spl->productName}}</strong>
-                                <p class="price-tag"> {{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($spl->id),0,",","." )}} VND</p>
-                        </div>
-                    </div>
+                     <div class="col-lg-3">
+                <div class="dvproduct">
+                    <a href="{{ url('detail', [$spl->id]) }}">
+                        <img src="/storage/product/{{ $spl->defaultImage }}" class="imgProduct">
+                    </a>
+                     <strong>{{$sp->productName }}</strong>
+                    <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($spl->id),0,",","." ) }} VND</p>
+                </div>
+            </div>
                     @endforeach
             </div>
         </div>

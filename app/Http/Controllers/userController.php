@@ -26,36 +26,4 @@ class userController extends Controller
         Auth::logout();
         return redirect('admin/login');
     }
-
-    public function customerLogin(){
-        return view('pages.login');
-    }
-
-    public function customerLoginAuth(Request $request){
-
-        $this->validate($request, 
-            ['email' => 'required|email',
-                'password' => 'required| min:6|max:50'
-            ]);
-        
-        /*
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
-            return redirect('/');
-        else
-            return view('pages.login')->with('message','Log in failed!');
-        */
-    }
-
-    public function customerLogout(){
-        Auth::logout();
-        return redirect('/');
-    }
-
-     public function customerSignUp(){
-        return view('pages.signup');
-    }
-
-    public function customerForgot(){
-        return view ('pages.forgot');
-    }
 }

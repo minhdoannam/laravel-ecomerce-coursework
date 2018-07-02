@@ -33,9 +33,23 @@
                   @endforeach
             </div>
         </li>
+        @if(!Auth::user())
         <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/login">Đăng nhập</a>
         </li>
+        @else
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fa fa-user"></span> {{Auth::user()->firstName}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                    <a class="dropdown-item" href="">Quản lý tài khoản</a>
+                    <a class="dropdown-item" href="">Quản lý đơn hàng</a>
+                    <a class="dropdown-item" href="logout">Đăng xuất</a>
+            </div>
+        </li>
+
+        @endif
         <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#myModal">  
                 <span id="cart-items" value="{{Cart::count()}}">
