@@ -25,24 +25,24 @@ a:hover {
             </ol>
             <div class="carousel-inner" role="listbox">
                 <!-- Slide One - Set the background image for this slide in the line below -->
-                <div class="carousel-item active" style="background-image: url('storage/img/bg3.jpg')">
+                <div class="carousel-item active" style="background-image: url('storage/img/bg4.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>First Slide</h3>
-                        <p>This is a description for the first slide.</p>
+                        <h3>Ấn tượng</h3>
+                        <p>Đoàn Nam Minh</p>
                     </div>
                 </div>
                 <!-- Slide Two - Set the background image for this slide in the line below -->
-                <div class="carousel-item" style="background-image: url('storage/img/bg2.jpg')">
+                <div class="carousel-item" style="background-image: url('storage/img/bg5.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>Second Slide</h3>
-                        <p>This is a description for the second slide.</p>
+                        <h3>Cuốn hút</h3>
+                        <p>Trương Thị Bích Chi</p>
                     </div>
                 </div>
                 <!-- Slide Three - Set the background image for this slide in the line below -->
-                <div class="carousel-item" style="background-image: url('storage/img/bg1.jpg')">
+                <div class="carousel-item" style="background-image: url('storage/img/bg6.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>Third Slide</h3>
-                        <p>This is a description for the third slide.</p>
+                        <h3>Thời trang</h3>
+                        <p>Nguyễn Duy Cương</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@ a:hover {
                     <a href="{{ url('detail', [$spl->id]) }}">
                         <img src="/storage/product/{{ $spl->defaultImage }}" class="imgProduct">
                     </a>
-                     <strong>{{$sp->productName }}</strong>
+                     <strong>{{$spl->productName }}</strong>
                     <p class="price-tag">{{number_format (\App\Http\Controllers\PricelistController::getPriceByProductID($spl->id),0,",","." ) }} VND</p>
                 </div>
             </div>
@@ -157,21 +157,18 @@ a:hover {
         <div class="col-md-9 dvTitlehr"></div>
         <div class="row">
             <div class="col-lg-6">
-                <h2>Chờ đếch gì nữa, đặt hàng nhanh và luôn</h2>
-                <p>The Modern Business template by Start Bootstrap includes:</p>
+                <h2>Sunfrog Boytique có gì hot?</h2>
+                <p>Tất cả những sản phẩm thời trang thời thượng nhất!</p>
                 <ul>
-                    <li>
-                        <strong>Bootstrap v4</strong>
-                    </li>
-                    <li>jQuery</li>
-                    <li>Font Awesome</li>
-                    <li>Working contact form with validation</li>
-                    <li>Unstyled page elements for easy customization</li>
+                    <li>Áo thun</li>
+                    <li>Hodie</li>
+                    <li>Giày thể thao</li>
+                    <li>Túi xách</li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+                <p>Hãy lựa chọn cho mình những sản phẩm ưng ý nhất!</p>
             </div>
             <div class="col-lg-6">
-                <img class="img-fluid rounded" src="storage/img/promotion_background.jpg" alt="">
+                <img class="img-fluid rounded" src="storage/img/girl_background.png" alt="">
             </div>
         </div>
         <!-- /.row -->
@@ -179,7 +176,6 @@ a:hover {
         <!-- Call to Action Section -->
         <div class="row mb-4">
             <div class="col-md-8">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
             </div>
             <div class="col-md-4">
                 <a class="btn btn-lg btn-secondary btn-block" href="#">Liên lạc ngay với chúng tôi</a>

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
 	public function __construct() {
-		$theloai = DB::table('categories')->orderBy('id', 'desc')->take(2)->get();
+		$theloai = DB::table('categories')->orderBy('id', 'asc')->take(3)->get();
 		view()->share('theloai', $theloai);
 		
 		$idSanphamMoi = DB::table('products')->select('id')->where('active', 1)->orderBy('id', 'desc')->take(4)->get();
@@ -29,6 +29,7 @@ class HomeController extends Controller
 				->where('active', 1)
 				->where('categoryID', $categoryID)
 				->take(4)
+				->orderBy('id', 'desc')
 				->get();
 		return $result;
 	}
