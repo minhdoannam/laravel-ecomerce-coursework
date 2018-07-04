@@ -59,6 +59,9 @@ class OrderController extends Controller
 					->first();
 
 		$cart_content = Cart::content();
+		$total = Cart::total();
+		$tax = Cart::tax();
+
 		foreach ($cart_content as $row)
 			DB::table('order_line')->insert([
 				'orderID' => $sale_order->id,
@@ -68,6 +71,6 @@ class OrderController extends Controller
 		
 		Cart::destroy();
 
-    	return view('pages.order')->with('order', $sale_order);
+    	return view('pages.order',['order' => $sale_order, 'cart' => $cart_content, 'total' => $total, 'tax' => $tax]);
     }
 }

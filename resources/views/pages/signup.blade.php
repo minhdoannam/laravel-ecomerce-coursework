@@ -47,15 +47,20 @@ border-top-right-radius: 0;
 
 @section('content')
 <div id="login-section">
-  <form action="{{route('login')}}" method="POST"class="form-signin">
+  <form action="/signup" method="POST" class="form-signin">
+      @csrf
     <div class="text-center">
       <img class="mb-4" src="/storage/img/sf-logo.png" alt="" width="150" height="150">
-
+      @if (Session::has('flag'))
+      <div class="alert alert-{{Session::get('flag')}}" role="alert">
+        {{ Session::get('message') }}
+      </div>
+      @endif
     </div>  
     <h1 class="h3 mb-3 font-weight-normal">Đăng ký tài khoản</h1>
     <div class="form-group">
       <label for="email">Tên</label>
-      <input id="name" type="text" class="form-control" name="email" required autofocus>
+      <input id="name" type="text" class="form-control" name="fullname" required autofocus>
     </div>
 
     <div class="form-group">
@@ -70,7 +75,7 @@ border-top-right-radius: 0;
 
      <div class="form-group">
       <label for="confirm-password">Nhập lại mật khẩu</label>
-      <input id="password" type="password" class="form-control" name="password" required data-eye>
+      <input id="password" type="password" class="form-control" name="password2" required data-eye>
     </div>
 
     <div class="form-group">

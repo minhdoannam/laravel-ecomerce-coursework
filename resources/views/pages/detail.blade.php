@@ -80,7 +80,7 @@
                                 <tr align="center">
                                     <th style="width: 33%">Mã SKU</th>
                                     <th>Tồn kho</th>
-                                    <th>Size</th>
+                                    <th>Thuộc tính</th>
                                     <th></th>
                                 </tr>
                             </thead>

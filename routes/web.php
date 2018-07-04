@@ -100,6 +100,7 @@ Route::post('/login', ['as' => 'login' , 'uses' =>'customerController@customerLo
 
 Route::get('/logout', ['as'=> 'logut', 'uses' =>'customerController@customerLogout']);
 Route::get('/signup', ['as' => 'signup' , 'uses' => 'customerController@customerSignUp'] );
+Route::post('/signup', ['as' => 'signup' , 'uses' => 'customerController@customerSignUpNew'] );
 Route::get('/forgot', ['as' => 'forgot' , 'uses' => 'customerController@customerForgot'] );
 Route::get('/search', ['as' => 'search' , 'uses' => 'ProductController@searchProduct']);
 
