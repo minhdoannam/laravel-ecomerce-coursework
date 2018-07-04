@@ -41,7 +41,7 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'http://db4free.net'),
+            'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'laravel_ecomerce'),
             'username' => env('DB_USERNAME', 'minhdn'),
