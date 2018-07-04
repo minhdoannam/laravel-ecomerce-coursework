@@ -25,7 +25,7 @@ a:hover {
             </ol>
             <div class="carousel-inner" role="listbox">
                 <!-- Slide One - Set the background image for this slide in the line below -->
-                <div class="carousel-item active" style="background-image: url('storage/img/bg4.jpg')">
+                <div class="carousel-item active" style="background-image: url('storage/public/img/bg4.jpg')">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>Ấn tượng</h3>
                         <p>Đoàn Nam Minh</p>
